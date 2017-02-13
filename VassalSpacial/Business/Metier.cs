@@ -17,7 +17,7 @@ namespace Business
 
             foreach(Character charac in Crud.getAll())
             {
-                res.Add(string.Format("nom = {0}, vie = {1}, dés = {2}, skill = {3}", charac.name, charac.name, charac.rolls, charac.skill));
+                res.Add(string.Format("nom = {0}, vie = {1}, dés = {2}", charac.name, charac.life, charac.rolls));
             }
 
             return res;

@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public abstract class Character
+    public class Character
     {
-        public abstract string getName { get; set; }
+        public string name { get; set; }
 
         public int life { get; set; }
 
         public int rolls { get; set; }
 
-        public string skill { get; set; }
     }
-
 }

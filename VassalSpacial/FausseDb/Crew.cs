@@ -13,12 +13,13 @@ namespace FausseDb
 
         static Crew()
         {
+            Random rand = new Random();
             Data = new List<Character>();
-            //Data.Add(new Character() { name = "Captain", life = getLife(), rolls = getRolls()});
-            //Data.Add(new Character() { name = "Mechanic", life = getLife(), rolls = getRolls()});
-            //Data.Add(new Character() { name = "Commander", life = getLife(), rolls = getRolls()});
-            //Data.Add(new Character() { name = "Doctor", life = getLife(), rolls = getRolls()});
-            Data.Add(new Doctor() { getName = Doctor.name, life = getLife(), rolls = getRolls()});
+            Data.Add(new Character() { name = "Captain", life = rand.Next(4, 7), rolls = rand.Next(2, 5) });
+            Data.Add(new Character() { name = "Mechanic", life = rand.Next(4, 7), rolls = rand.Next(2, 5) });
+            Data.Add(new Character() { name = "Commander", life = rand.Next(4, 7), rolls = rand.Next(2, 5) });
+            Data.Add(new Character() { name = "Doctor", life = rand.Next(4, 7), rolls = rand.Next(2, 5) });
+            Data.Add(new Doctor() { name = "Thrall thrall", life = rand.Next(4, 7), rolls = rand.Next(2, 5) });
         }
 
         private static int getLife()

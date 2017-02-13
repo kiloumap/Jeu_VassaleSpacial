@@ -8,6 +8,5 @@ namespace Model
 {
     public class Doctor : Character
     {
-
     }
 }
