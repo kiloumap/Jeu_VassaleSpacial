@@ -1,6 +1,4 @@
 # Jeu_VassaleSpacial
-
-<!DOCTYPE html>
 <html>
 <head>
 	<title>Jeu vassal des familles</title>
@@ -8,17 +6,26 @@
 <body>
 <h1>Classes</h1>
 <table>
-<tr>Equipage
-<td>Mecano</td>
-<td>Doctor</td>
-<td>Captain</td>
-<td>Commandant</td>
+	<tr>
+		<th>Equipage</th>
+		<th>Pannes</th>
+	</tr>
+	<tr>
+		<td>Mecano</td>
+		<td>Petite</td>
+	</tr>
 </tr>
-
-<tr>Pannes
-<td>Petite</td>
-<td>Moyenne</td>
-<td>Grosse</td>
+<tr>
+	<td>Doctor</td>
+	<td>Moyenne</td>
+</tr>
+<tr>
+	<td>Captain</td>
+	<td>Grosse</td>
+</tr>
+<tr>
+	<td>Commandant</td>
+	<td></td>
 </tr>
 </table>
 </body>
