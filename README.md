@@ -30,26 +30,26 @@
 </table>
 
 <h2> Methodes Crew : </h2>
-<li>
-	<ul>Name</ul>
-	<ul>Life</ul>
-	<ul>NbRolls</ul>
-	<ul>Skill</ul>
-	<ul>StartRoom</ul>
-</li>
+<ul>
+	<li>Name</li>
+	<li>Life</li>
+	<li>NbRolls</li>
+	<li>Skill</li>
+	<li>StartRoom</li>
+</ul>
 
 <h2> Methodes Failure : </h2>
-<li>
-	<ul>Name</ul>
-	<ul>Damage</ul>
-	<ul>NbRolls</ul>
-</li>
+<ul>
+	<li>Name</li>
+	<li>Damage</li>
+	<li>NbRolls</li>
+</ul>
 
 <h2> Methodes Starship : </h2>
-<li>
-	<ul>Name</ul>
-	<ul>Life</ul>
-	<ul>ListRoom</ul>
-</li>
+<ul>
+	<li>Name</li>
+	<li>Life</li>
+	<li>ListRoom</li>
+</ul>
 </body>
 </html>
