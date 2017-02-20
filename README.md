@@ -7,26 +7,49 @@
 <h1>Classes</h1>
 <table>
 	<tr>
-		<th>Equipage</th>
-		<th>Pannes</th>
+		<th><i>Crew</i></th>
+		<th><i>Failure</i></th>
+		<th><i>Starship</i></th>
 	</tr>
 	<tr>
-		<td>Mecano</td>
-		<td>Petite</td>
+		<td>Mechanic</td>
+		<td>Small</td>
 	</tr>
-</tr>
-<tr>
-	<td>Doctor</td>
-	<td>Moyenne</td>
-</tr>
-<tr>
-	<td>Captain</td>
-	<td>Grosse</td>
-</tr>
-<tr>
-	<td>Commandant</td>
-	<td></td>
-</tr>
+	<tr>
+		<td>Doctor</td>
+		<td>Medium</td>
+	</tr>
+	<tr>
+		<td>Captain</td>
+		<td>Big</td>
+	</tr>
+	<tr>
+		<td>Commander</td>
+		<td></td>
+	</tr>
 </table>
+
+<h2> Methodes Crew : </h2>
+<li>
+	<ul>Name</ul>
+	<ul>Life</ul>
+	<ul>NbRolls</ul>
+	<ul>Skill</ul>
+	<ul>StartRoom</ul>
+</li>
+
+<h2> Methodes Failure : </h2>
+<li>
+	<ul>Name</ul>
+	<ul>Damage</ul>
+	<ul>NbRolls</ul>
+</li>
+
+<h2> Methodes Starship : </h2>
+<li>
+	<ul>Name</ul>
+	<ul>Life</ul>
+	<ul>ListRoom</ul>
+</li>
 </body>
 </html>
