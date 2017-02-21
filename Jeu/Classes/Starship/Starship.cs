@@ -6,10 +6,22 @@ using System.Threading.Tasks;
 
 namespace Classes.Starship
 {
-    class Starship
+    public class Starship
     {
         public string name { get; set; }
         public int life { get; set; }
-        public int ListRoom { get; set; }
+
+        public Starship()
+        {
+            name = "VassaleSpacial";
+            life = randLife();
+        }
+
+        private int randLife()
+        {
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int res = rand.Next(2,6);
+            return res;
+        }
     }
 }

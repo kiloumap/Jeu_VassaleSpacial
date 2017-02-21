@@ -3,6 +3,54 @@
 <head>
 	<title>Jeu vassal des familles</title>
 </head>
+<style>
+.tree, .tree ul{
+  font: normal normal 14px/20px Helvetica, Arial, sans-serif;  
+  list-style-type: none;
+  margin-left: 0 0 0 10px;
+  padding: 0;
+  position: relative;   
+  overflow:hidden;    
+}
+
+.tree li{
+  margin: 0;
+  padding: 0 12px;  
+  position: relative;   
+}
+  
+.tree li::before, .tree li::after{
+  content: '';
+  position: absolute;
+  left: 0;
+}
+
+/* horizontal line on inner list items */
+.tree li::before{
+  border-top: 1px solid #999;
+  top: 10px;
+  width: 10px;
+  height: 0;    
+}
+
+/* vertical line on list items */   
+.tree li:after{
+  border-left: 1px solid #999;
+  height: 100%;
+  width: 0px;
+  top: -10px; 
+}
+
+/* lower line on list items from the first level because they don't have parents */
+.tree > li::after{
+  top: 10px;
+}
+
+/* hide line from the last of the first level list items */
+.tree > li:last-child::after{
+  display: none;
+}
+</style>
 <body>
 <h1>Classes</h1>
 <table>
@@ -50,6 +98,49 @@
 	<li>Name</li>
 	<li>Life</li>
 	<li>ListRoom</li>
+</ul>
+
+<h1>Règles</h1>
+<ul class="tree">
+	<li>Voir l'état de son vaisseau
+		<ul>
+			<li>Nombre de point de vie</li>
+			<li class="last">Liste des pannes à résoudre</li>
+		</ul>
+	<li>Voir l'état des membres d'équipage
+		<ul>
+			<li>Nombre de points de vie restant</li>
+			<li>Nombre de dés restant</li>
+			<li class="last">Position dans le vaisseau</li>
+		</ul>
+	</li>
+	<li>Assigner un membre d'équipage à un module</li>
+	<li>Lancer jusqu'à 3 fois les dés d'un membre d'équipage par tour, avec possibilité de les stocker
+		<ul>
+			<li>A la fin de chaque tour, le programme appliquera les régles de fin de tour</li>
+			<li>Retirer 1 dés à chaque membre d'équipage</li>
+			<li>Déclencher les effets negatifs des pannes non resolues</li>
+		</ul>
+		</li>
+		<li>Si un membre de l'équipage tombe à 0 pdv, il meurs et ne peux plus être utiliser.</li>
+		<li class="last">Si les 4 meurs = GAME OVER</li>	
+		</ul>
+	</li>
+</ul>
+
+<h1>Menu</h1>
+<ul class="tree">
+	<li>Voir l'état du vaisseau -> Affiche PDV + pannes</li>
+	<li>Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
+	<li>Choisir un membre de l'équipage
+		<ul> Vous controller le {personnage} -> Affiche l'état du personnage en cours (Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial)
+			<li>Deplacer le membre de l'équipage</li> 
+			<li>Lancer un dés</li>
+			<li>Stocker les dés restant</li>
+			<li>Activer la capacité spécial</li>
+		</ul>
+	</li>
+	<li>Abandonner la partie</li>
 </ul>
 </body>
 </html>

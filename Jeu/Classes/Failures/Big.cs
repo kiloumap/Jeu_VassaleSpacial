@@ -6,8 +6,23 @@ using System.Threading.Tasks;
 
 namespace Classes.Failures
 {
-    class Big
+    public class Big : Failure
     {
-        public string name { get; set; }
+        public override string name { get; set; }
+        public override int life { get; set; }
+        public Big()
+        {
+            name = "Grosse panne";
+            life = randLife();
+        }
+
+        private int randLife()
+        {
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int res = rand.Next(24, 36);
+            return res;
+        }
+
+       
     }
 }

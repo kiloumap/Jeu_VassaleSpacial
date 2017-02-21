@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jeu", "Jeu\Jeu.csproj", "{7
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Classes", "Classes\Classes.csproj", "{EF9A714C-796D-4F07-9A3E-A219596151D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FausseDb", "FausseDb\FausseDb.csproj", "{7BC6D10C-18C4-4D94-BC88-0344D64CF30A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EF9A714C-796D-4F07-9A3E-A219596151D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF9A714C-796D-4F07-9A3E-A219596151D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF9A714C-796D-4F07-9A3E-A219596151D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BC6D10C-18C4-4D94-BC88-0344D64CF30A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BC6D10C-18C4-4D94-BC88-0344D64CF30A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BC6D10C-18C4-4D94-BC88-0344D64CF30A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BC6D10C-18C4-4D94-BC88-0344D64CF30A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
