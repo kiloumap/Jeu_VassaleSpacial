@@ -3,8 +3,7 @@
 <head>
 	<title>Jeu vassal des familles</title>
 </head>
-
-```css
+<style>
 .tree, .tree ul{
   font: normal normal 14px/20px Helvetica, Arial, sans-serif;  
   list-style-type: none;
@@ -51,7 +50,7 @@
 .tree > li:last-child::after{
   display: none;
 }
-```
+</style>
 <body>
 
 <h1>Classes</h1>
