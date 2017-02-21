@@ -4,7 +4,7 @@
 	<title>Jeu vassal des familles</title>
 </head>
 
-</style>
+
 <body>
 <style>
 .tree, .tree ul{
@@ -53,6 +53,7 @@
 .tree > li:last-child::after{
   display: none;
 }
+</style>
 <h1>Classes</h1>
 <table>
 	<tr>
@@ -101,7 +102,7 @@
 	<li>ListRoom</li>
 </ul>
 
-<h1>Règles</h1>
+<h1>Fonctionnalitées obligatoires</h1>
 <ul class="tree">
 	<li>Voir l'état de son vaisseau
 		<ul>
@@ -131,17 +132,17 @@
 
 <h1>Menu</h1>
 <ul class="tree">
-	<li>Voir l'état du vaisseau -> Affiche PDV + pannes</li>
-	<li>Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
-	<li>Choisir un membre de l'équipage
+	<li>1 : Voir l'état du vaisseau -> Affiche PDV + pannes</li>
+	<li>2 : Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
+	<li>3 : Choisir un membre de l'équipage
 		<ul> Vous controller le {personnage} -> Affiche l'état du personnage en cours (Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial)
-			<li>Deplacer le membre de l'équipage</li> 
-			<li>Lancer un dés</li>
-			<li>Stocker les dés restant</li>
-			<li>Activer la capacité spécial</li>
+			<li>1 : Deplacer le membre de l'équipage</li> 
+			<li>2 : Lancer un dés</li>
+			<li>3 : Stocker les dés restant</li>
+			<li>4 : Activer la capacité spécial</li>
 		</ul>
 	</li>
-	<li>Abandonner la partie</li>
+	<li>9 : Abandonner la partie</li>
 </ul>
 </body>
 </html>
