@@ -4,7 +4,7 @@
 	<title>Jeu vassal des familles</title>
 </head>
 
-<style>
+```css
 .tree, .tree ul{
   font: normal normal 14px/20px Helvetica, Arial, sans-serif;  
   list-style-type: none;
@@ -51,10 +51,9 @@
 .tree > li:last-child::after{
   display: none;
 }
-
+```
 <body>
-</style>
-```css
+
 <h1>Classes</h1>
 <table>
 	<tr>
