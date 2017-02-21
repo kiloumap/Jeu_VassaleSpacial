@@ -42,7 +42,7 @@
 <ul>
 	<li>Name</li>
 	<li>Damage</li>
-	<li>NbRolls</li>
+	<li>NumberToDo</li>
 </ul>
 
 <h2> Methodes Starship : </h2>

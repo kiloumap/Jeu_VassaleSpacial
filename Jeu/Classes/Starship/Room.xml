@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<room>
+  <name>Cockpit</name>
+  <name>Serre</name>
+  <name>Infirmary
+    <Child>Laboratory</Child>
+  </name>
+  <name>Relax
+    <Child>Survival</Child>
+  </name>
+  <name>Maintnance</name>
+</room>
