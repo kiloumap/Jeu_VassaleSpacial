@@ -54,6 +54,7 @@
 
 <body>
 </style>
+```css
 <h1>Classes</h1>
 <table>
 	<tr>
@@ -131,18 +132,18 @@
 </ul>
 
 <h1>Menu</h1>
-<ol class="tree">
-	<li>Voir l'état du vaisseau -> Affiche PDV + pannes</li>
-	<li>Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
-	<li>Choisir un membre de l'équipage
-		<ol> Vous controller le {personnage} -> Affiche l'état du personnage en cours (Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial)
-			<li>Deplacer le membre de l'équipage</li> 
-			<li>Lancer un dés</li>
-			<li>Stocker les dés restant</li>
-			<li>Activer la capacité spécial</li>
-		</ol>
+<ul class="tree">
+	<li>1 : Voir l'état du vaisseau -> Affiche PDV + pannes</li>
+	<li>2 : Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
+	<li>3 : Choisir un membre de l'équipage
+		<ul> Vous controller le {personnage} -> Affiche l'état du personnage en cours (Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial)
+			<li>1 : Deplacer le membre de l'équipage</li> 
+			<li>2 : Lancer un dés</li>
+			<li>3 : Stocker les dés restant</li>
+			<li>4 : Activer la capacité spécial</li>
+		</ul>
 	</li>
-	<li>Abandonner la partie</li>
-</ol>
+	<li>9 : Abandonner la partie</li>
+</ul>
 </body>
 </html>
