@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 namespace Classes.Crew
 {
-    public class Doctor : Crew
+    public class Commandant : Crew
     {
         public override string name { get; set; }
 
-        public Doctor()
+        public Commandant()
         {
-            name = "Docteur";
+            name = "Commandant";
         }
     }
 }

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseCrew.cs" />
     <Compile Include="BaseFailure.cs" />
     <Compile Include="BaseRoom.cs" />
     <Compile Include="BaseStarship.cs" />

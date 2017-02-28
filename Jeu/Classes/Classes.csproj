@@ -41,6 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Crew\Crew.cs" />
+    <Compile Include="Crew\Captain.cs" />
+    <Compile Include="Crew\Comamdant.cs" />
+    <Compile Include="Crew\Mechanic.cs" />
     <Compile Include="Crew\Doctor.cs" />
     <Compile Include="Failures\Big.cs" />
     <Compile Include="Failures\Failure.cs" />
