@@ -5,8 +5,35 @@
 </head>
 
 <body>
-
-<h1>Classes</h1>
+<h1>Couches :</h1>
+<ul>
+	<li>Client
+		<ul>
+			<li>Main</li>
+		</ul>
+	</li>
+	<li>Business (metier)
+		<ul>
+			<li>Toutes les fonctions : Tour suivant, les verifs ...</li>
+		</ul>
+	</li>
+	<li>Crud
+		<ul>
+			<li>Les methodes d'accés aux données (getAll, getOne, Create, Delete, Update)</li>
+		</ul>
+	</li>
+	<li>Fausse DB
+		<ul>
+			<li>Les listes des objets</li>
+		</ul>
+	</li>
+	<li>Model
+		<ul>
+			<li>Les classes avec propriétés etc...</li>
+		</ul>
+	</li>
+</ul>
+<h1 id = "Classes">Classes</h1>
 <table>
 	<tr>
 		<th><i>Crew</i></th>
@@ -63,17 +90,17 @@
 </ul>
 
 <h1>Fonctionnalitées obligatoires</h1>
-<ul class="tree">
+<ul>
 	<li>Voir l'état de son vaisseau
 		<ul>
 			<li>Nombre de point de vie</li>
-			<li class="last">Liste des pannes à résoudre</li>
+			<li>Liste des pannes à résoudre</li>
 		</ul>
 	<li>Voir l'état des membres d'équipage
 		<ul>
 			<li>Nombre de points de vie restant</li>
 			<li>Nombre de dés restant</li>
-			<li class="last">Position dans le vaisseau</li>
+			<li>Position dans le vaisseau</li>
 		</ul>
 	</li>
 	<li>Assigner un membre d'équipage à un module</li>
@@ -85,12 +112,13 @@
 		</ul>
 		</li>
 		<li>Si un membre de l'équipage tombe à 0 pdv, il meurs et ne peux plus être utiliser.</li>
-		<li class="last">Si les 4 meurs = GAME OVER</li>	
+		<li>Si les 4 meurs = GAME OVER</li>	
 		</ul>
 	</li>
 </ul>
 
 <h1>Menu</h1>
+Tant que nbPerso > 0
 <ul>
 	<li>1 : Voir l'état du vaisseau -> Affiche PDV + pannes + effet negatifs de ces pannes</li>
 	<li>2 : Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
@@ -105,8 +133,10 @@
 	<li>4 : Tour suivant</li>
 	<li>9 : Abandonner la partie</li>
 </ul>
+Sinon game over 
 
-<h1>Fonction</h1>
+
+<h1 id ="fonctions">Fonction</h1>
 <h2>Se deplacer</h2>
 On affiche la salle où se trouve le personnage.</br>
 On affiche toutes les salles du vaisseau.</br>
@@ -114,11 +144,11 @@ Le personnage choisis une direction</br>
 Si le personnage traverse une panne non corrigé, on demande confirmation.
 
 <h2>Tour suivant</h2>
-On instancie une valeur à 0 avant. </br>
+On instancie une valeur à 1 avant. </br>
 Chaque tours on incrémentente cette valeur (=> num semaine)</br>
 On a plusieurs verification à faire : </br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Check les pannes existantes</br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Faire les dégats au vaisseau en fonction des pannes existantes</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Faire les effets négatifs en fonction des pannes existantes (pertes dés vaisseaux / pertes dés equipages / pertes dés)</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Check pdv du vaisseaux</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- -1 dès par personnages, en laissant un dès minimum !!!</br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br>
