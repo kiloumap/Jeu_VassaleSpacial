@@ -31,23 +31,25 @@
 	</tr>
 </table>
 
-<h2> Methodes Crew : </h2>
+<h2> Propriété Crew : </h2>
 <ul>
+	<li>Id</li>
 	<li>Name</li>
 	<li>Life</li>
 	<li>NbRolls</li>
 	<li>Skill</li>
 	<li>StartRoom</li>
+	<li>UsedRolls</li>
 </ul>
 
-<h2> Methodes Failure : </h2>
+<h2> Propriété Failure : </h2>
 <ul>
 	<li>Name</li>
 	<li>Damage</li>
 	<li>NumberToDo</li>
 </ul>
 
-<h2> Methodes Starship : </h2>
+<h2> Propriété Starship : </h2>
 <ul>
 	<li>Name</li>
 	<li>Life</li>
@@ -93,8 +95,15 @@
 			<li>3 : Stocker les dés restant</li>
 			<li>4 : Activer la capacité spécial</li>
 		</ul>
+	<li>4 : Tour suivant</li>
 	</li>
 	<li>9 : Abandonner la partie</li>
 </ul>
+
+<h1>Fonction</h1>
+<h2>Se deplacer</h2>
+On affiche la salle où se trouve le personnage.
+On affiche toutes les salles du vaisseau.
+Si le personnage traverse une panne non corrigé, on demande confirmation
 </body>
 </html>
