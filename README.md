@@ -59,7 +59,7 @@
 <ul>
 	<li>Id</li>
 	<li>Name</li>
-	<li>FailureType(0:small,1:medium,2:big)</li>
+	<li>FailureType(-1:pas de panne,	0:small,1:medium,2:big)</li>
 </ul>
 
 <h1>Fonctionnalitées obligatoires</h1>
@@ -91,8 +91,8 @@
 </ul>
 
 <h1>Menu</h1>
-<ul class="tree">
-	<li>1 : Voir l'état du vaisseau -> Affiche PDV + pannes</li>
+<ul>
+	<li>1 : Voir l'état du vaisseau -> Affiche PDV + pannes + effet negatifs de ces pannes</li>
 	<li>2 : Voir l'état des membres d'équipage -> Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial</li>
 	<li>3 : Choisir un membre de l'équipage
 		<ul> Vous controller le {personnage} -> Affiche l'état du personnage en cours (Affiche Nb de pdv restant de l'équipe + dés + position + capacité spécial)
@@ -101,8 +101,8 @@
 			<li>3 : Stocker les dés restant</li>
 			<li>4 : Activer la capacité spécial</li>
 		</ul>
-	<li>4 : Tour suivant</li>
 	</li>
+	<li>4 : Tour suivant</li>
 	<li>9 : Abandonner la partie</li>
 </ul>
 
@@ -113,6 +113,15 @@ On affiche toutes les salles du vaisseau.</br>
 Le personnage choisis une direction</br>
 Si le personnage traverse une panne non corrigé, on demande confirmation.
 
-<h2>
+<h2>Tour suivant</h2>
+On instancie une valeur à 0 avant. </br>
+Chaque tours on incrémentente cette valeur (=> num semaine)</br>
+On a plusieurs verification à faire : </br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Check les pannes existantes</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Faire les dégats au vaisseau en fonction des pannes existantes</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Check pdv du vaisseaux</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- -1 dès par personnages, en laissant un dès minimum !!!</br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</br>
+on affiche un speech disant les nouvelles pannes etc...
 </body>
 </html>
