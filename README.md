@@ -53,7 +53,13 @@
 <ul>
 	<li>Name</li>
 	<li>Life</li>
-	<li>ListRoom</li>
+</ul>
+
+<h2> Propriété Rooms : </h2>
+<ul>
+	<li>Id</li>
+	<li>Name</li>
+	<li>FailureType(0:small,1:medium,2:big)</li>
 </ul>
 
 <h1>Fonctionnalitées obligatoires</h1>
@@ -102,8 +108,11 @@
 
 <h1>Fonction</h1>
 <h2>Se deplacer</h2>
-On affiche la salle où se trouve le personnage.
-On affiche toutes les salles du vaisseau.
-Si le personnage traverse une panne non corrigé, on demande confirmation
+On affiche la salle où se trouve le personnage.</br>
+On affiche toutes les salles du vaisseau.</br>
+Le personnage choisis une direction</br>
+Si le personnage traverse une panne non corrigé, on demande confirmation.
+
+<h2>
 </body>
 </html>
