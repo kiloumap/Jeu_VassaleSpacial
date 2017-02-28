@@ -40,16 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Crew\Crew.cs" />
+    <Compile Include="Crew\Doctor.cs" />
     <Compile Include="Failures\Big.cs" />
     <Compile Include="Failures\Failure.cs" />
     <Compile Include="Failures\Medium.cs" />
     <Compile Include="Failures\Small.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Starship\Room.cs" />
     <Compile Include="Starship\Starship.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Crew\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Starship\Room.xml" />
   </ItemGroup>

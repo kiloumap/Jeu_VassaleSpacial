@@ -12,7 +12,6 @@ namespace Jeu
     {
         static void Main(string[] args)
         {
-            // TO DO : convertir le montant int en decimal
             Console.WriteLine("!! Bonjour !!");
             ShowMenu();
             while (true)
@@ -24,6 +23,8 @@ namespace Jeu
                         ShowMenu();
                         break;
                     case "1":
+                        Room room = new Room();
+                        Console.WriteLine(room.l1 + Environment.NewLine + room.l2 + Environment.NewLine + room.l3 + Environment.NewLine + room.l4 + Environment.NewLine + room.l5);
                         ShowMenu();
                         break;
                     case "2":

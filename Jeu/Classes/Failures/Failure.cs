@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Classes.Starship;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Classes.Failures
 {
@@ -14,6 +16,7 @@ namespace Classes.Failures
         public int damage { get; set; }
         public abstract int life { get; set; }
         public abstract string name { get; set; }
+        public string nameRoom { get; set; }
 
         public Failure()
         {
@@ -29,7 +32,15 @@ namespace Classes.Failures
             var res = Enum.Parse(typeof(TypeDamage), type[randomEnum]);
             return res.ToString();
         }
-
+        
+        private string randomRoom()
+        {
+            string[] type = Enum.GetNames(typeof(Rooms));
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int randomEnum = rand.Next(type.Length);
+            var res = Enum.Parse(typeof(Rooms), type[randomEnum]);
+            return res.ToString();
+        }
         private int randDamage(string type)
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
@@ -48,4 +59,16 @@ namespace Classes.Failures
         DamageToStarship,
         DamageToRolls
     }
+
+    public enum Rooms
+    {
+        Cockpit = 0,
+        Serre = 0,
+        Infirmary = 0,
+        Laboratory = 1,
+        Relax = 0,
+        Survival = 1,
+        Mainteannce = 0
+    }
 }
+
