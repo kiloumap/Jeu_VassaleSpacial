@@ -18,6 +18,7 @@ namespace Classes.Crew
         {
             life = randomize();
             numberRolls = randomize();
+            room = randomRoom();
         }
 
         private int randomize()
@@ -25,6 +26,24 @@ namespace Classes.Crew
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             int res = rand.Next(2,5);
             return res;
+        }
+        private string randomRoom()
+        {
+            string[] room = Enum.GetNames(typeof(Rooms));
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            int randomEnum = rand.Next(room.Length);
+            var res = Enum.Parse(typeof(Rooms), room[randomEnum]);
+            return res.ToString();
+        }
+        public enum Rooms
+        {
+            Cockpit,
+            Serre,
+            Infirmary,
+            Laboratory,
+            Relax,
+            Survival,
+            Mainteannce
         }
 
     }

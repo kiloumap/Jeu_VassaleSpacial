@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <room>
-  <name>Cockpit</name>
-  <name>Serre</name>
-  <name>Infirmary
-    <Child>Laboratory</Child>
-  </name>
-  <name>Relax
-    <Child>Survival</Child>
-  </name>
-  <name>Maintnance</name>
+  <level1>Cockpit</level1>
+  <level1>Serre</level1>
+  <level1>Infirmary
+    <level2>Laboratory</level2>
+  </level1>
+  <level1>Relax
+    <level2>Survival</level2>
+  </level1>
+  <level1>Maintnance</level1>
 </room>

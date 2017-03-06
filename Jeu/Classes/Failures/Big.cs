@@ -12,7 +12,7 @@ namespace Classes.Failures
         public override int life { get; set; }
         public Big()
         {
-            name = "Grosse panne";
+            name = "grosse";
             life = randLife();
         }
 

@@ -11,17 +11,19 @@ namespace Classes.Failures
     public abstract class Failure
     {
         public int id { get; set; }
-        public int numSemaine { get; set; }
+        public int week { get; set; }
         public string typeDamage { get; set; }
         public int damage { get; set; }
         public abstract int life { get; set; }
         public abstract string name { get; set; }
-        public string nameRoom { get; set; }
-
+        public string room { get; set; }
+        public int active { get; set; }
         public Failure()
         {
             typeDamage = randomType();
+            room = randomRoom();
             damage = randDamage(typeDamage);
+            active = 1;
         }
 
         private string randomType()
@@ -35,12 +37,13 @@ namespace Classes.Failures
         
         private string randomRoom()
         {
-            string[] type = Enum.GetNames(typeof(Rooms));
+            string[] room = Enum.GetNames(typeof(Rooms));
             Random rand = new Random(Guid.NewGuid().GetHashCode());
-            int randomEnum = rand.Next(type.Length);
-            var res = Enum.Parse(typeof(Rooms), type[randomEnum]);
+            int randomEnum = rand.Next(room.Length);
+            var res = Enum.Parse(typeof(Rooms), room[randomEnum]);
             return res.ToString();
-        }
+        } 
+
         private int randDamage(string type)
         {
             Random rand = new Random(Guid.NewGuid().GetHashCode());
@@ -62,13 +65,13 @@ namespace Classes.Failures
 
     public enum Rooms
     {
-        Cockpit = 0,
-        Serre = 0,
-        Infirmary = 0,
-        Laboratory = 1,
-        Relax = 0,
-        Survival = 1,
-        Mainteannce = 0
+        Cockpit,
+        Serre,
+        Infirmary,
+        Laboratory,
+        Relax,
+        Survival,
+        Mainteannce
     }
 }
 

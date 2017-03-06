@@ -12,7 +12,7 @@ namespace Classes.Failures
         public override int life { get; set; }
         public Medium()
         {
-            name = "Panne moyenne";
+            name = "moyenne";
             life = randLife();
         }
         private int randLife()

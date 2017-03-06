@@ -40,8 +40,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessCrew.cs" />
     <Compile Include="BusinessFailure.cs" />
+    <Compile Include="BusinessJeu.cs" />
+    <Compile Include="BusinessStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Classes\Classes.csproj">
+      <Project>{ef9a714c-796d-4f07-9a3e-a219596151d1}</Project>
+      <Name>Classes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crud\Crud.csproj">
+      <Project>{c02d4203-d47b-4a4e-b932-bb30c90546f0}</Project>
+      <Name>Crud</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -32,5 +32,22 @@ namespace Crud
             return res;
         }
 
+        public static Failure Update(int id, int life)
+        {
+            Failure item = getOne(id);
+            item.life = life;
+            return item;
+        }
+        
+        public static void create(string typeOfFailure, int id, int week)
+        {
+            if (typeOfFailure == "small")
+                BaseFailure.FailureList.Add(new Small() { id = id, week = week });
+            else if (typeOfFailure == "medium")
+                BaseFailure.FailureList.Add(new Medium() { id = id, week = week });
+            else if (typeOfFailure == "big")
+                BaseFailure.FailureList.Add(new Big() { id = id, week = week });
+        }
+
     }
 }

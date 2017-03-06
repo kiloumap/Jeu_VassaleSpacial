@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,5 +25,7 @@ namespace Classes.Starship
             int res = rand.Next(2,6);
             return res;
         }
+
+
     }
 }
