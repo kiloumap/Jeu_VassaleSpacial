@@ -66,12 +66,11 @@ namespace Classes.Failures
     public enum Rooms
     {
         Cockpit,
-        Serre,
+        Greenhouse,
         Infirmary,
         Laboratory,
-        Relax,
+        Relaxation,
         Survival,
-        Mainteannce
+        Maintenance
     }
 }
-

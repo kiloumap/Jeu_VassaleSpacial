@@ -1,12 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<room>
-  <level1>Cockpit</level1>
-  <level1>Serre</level1>
-  <level1>Infirmary
-    <level2>Laboratory</level2>
-  </level1>
-  <level1>Relax
-    <level2>Survival</level2>
-  </level1>
-  <level1>Maintnance</level1>
-</room>
+<rooms>
+  <room>
+    <name>Cockpit</name>
+    <position>1</position>
+    <prevPosition>0</prevPosition>
+    <nextPosition>2</nextPosition>
+  </room>
+  <room>
+    <name>Serre</name>
+    <position>2</position>
+    <prevPosition>1</prevPosition>
+    <nextPosition>3</nextPosition>
+  </room>
+  <room>
+    <name>Infirmary</name>
+    <position>3</position>
+    <prevPosition>2</prevPosition>
+    <nextPosition>4</nextPosition>
+  </room>
+  <room>
+    <name>Laboratory</name>
+    <position>31</position>
+    <prevPosition>3</prevPosition>
+    <nextPosition>0</nextPosition>
+  </room>
+  <room>
+    <name>Relax</name>
+    <position>4</position>
+    <prevPosition>3</prevPosition>
+    <nextPosition>5</nextPosition>
+  </room>
+  <room>
+    <name>Survival</name>
+    <position>41</position>
+    <prevPosition>4</prevPosition>
+    <nextPosition>0</nextPosition>
+  </room>
+  <room>
+    <name>Maintnance</name>
+    <position>5</position>
+    <prevPosition>4</prevPosition>
+    <nextPosition>0</nextPosition>
+    <backRoom>0</backRoom>
+  </room>
+</rooms>

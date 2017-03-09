@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Classes.Starship;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,13 @@ namespace Classes.Crew
         public abstract string name { get; set; }
         public int life { get; set; }
         public int numberRolls { get; set; }
-        public string room { get; set; }
+        public double room { get; set; }
 
         public Crew()
         {
             life = randomize();
             numberRolls = randomize();
-            room = randomRoom();
+            room = randRoom();
         }
 
         private int randomize()
@@ -27,6 +28,23 @@ namespace Classes.Crew
             int res = rand.Next(2,5);
             return res;
         }
+
+        private double randRoom()
+        {
+            List<double> rooms = new List<double>();
+            rooms.Add(1);
+            rooms.Add(2);
+            rooms.Add(3);
+            rooms.Add(3.10);
+            rooms.Add(4);
+            rooms.Add(4.10);
+            rooms.Add(5);
+            Random rand = new Random(Guid.NewGuid().GetHashCode());
+            var res = rand.Next(1,rooms.Count-1);
+            return Convert.ToDouble(res);
+        }
+
+        /*
         private string randomRoom()
         {
             string[] room = Enum.GetNames(typeof(Rooms));
@@ -37,14 +55,14 @@ namespace Classes.Crew
         }
         public enum Rooms
         {
-            Cockpit,
-            Serre,
-            Infirmary,
-            Laboratory,
-            Relax,
-            Survival,
-            Mainteannce
+            Cockpit = 1,
+            Greenhouse = 2,
+            Infirmary = 3,
+            Laboratory = 31,
+            Relaxation = 4,
+            Survival = 41,
+            Maintenance = 5
         }
-
+        */
     }
 }

@@ -17,6 +17,8 @@ namespace Jeu
             Console.WriteLine("!! Bonjour !!");
             int week = 1;
             BusinessJeu.round(week);
+            BusinessStarship starship = new BusinessStarship();
+            BusinessCrew crew = new BusinessCrew();
             while (true)
             {
                 ShowMenu();
@@ -24,14 +26,13 @@ namespace Jeu
                 switch (operation)
                 {
                     case "1":
-                        BusinessStarship starship = new BusinessStarship();
                         starship.ShowStarShip();
                         break;
                     case "2":
-                        //ShowListCrew();
+                        crew.ShowListCrew();
                         break;
                     case "3":
-                        //ShowListCrew();
+                        crew.ShowListCrew();
                         Console.WriteLine("Quel personnage voulez vous jouer ? ");
                         string charac = Console.ReadLine();
                         CharacAction(charac);

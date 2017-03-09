@@ -8,16 +8,10 @@ namespace Classes.Starship
 {
     public class Room
     {
-        public Rooms room { get; set; }
-        public enum Rooms
-        {
-            Cockpit,
-            Serre,
-            Infirmary,
-            Laboratory,
-            Relax,
-            Survival,
-            Mainteannce
-        }
+        public string name { get; set; }
+        public double position { get; set; }
+        public double nextPosition { get; set; }
+        public double prevPosition { get; set; }
+        public double backRoom { get; set; }
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="CrudCrew.cs" />
     <Compile Include="CrudFailure.cs" />
+    <Compile Include="CrudRoom.cs" />
     <Compile Include="CrudStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

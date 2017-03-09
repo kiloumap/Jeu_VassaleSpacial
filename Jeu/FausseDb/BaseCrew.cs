@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Classes;
 using Classes.Crew;
+using System.Xml;
+
 namespace FausseDb
 {
     public static class BaseCrew
@@ -18,5 +20,8 @@ namespace FausseDb
             CrewList.Add(new Captain()     { id = 3 });
             CrewList.Add(new Commandant()  { id = 4 });
         }
+
+        
     }
+
 }
