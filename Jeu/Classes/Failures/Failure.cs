@@ -16,7 +16,7 @@ namespace Classes.Failures
         public int damage { get; set; }
         public abstract int life { get; set; }
         public abstract string name { get; set; }
-        public string room { get; set; }
+        public double room { get; set; }
         public int active { get; set; }
         public Failure()
         {
@@ -34,15 +34,21 @@ namespace Classes.Failures
             var res = Enum.Parse(typeof(TypeDamage), type[randomEnum]);
             return res.ToString();
         }
-        
-        private string randomRoom()
+
+        private double randomRoom()
         {
-            string[] room = Enum.GetNames(typeof(Rooms));
+            List<double> rooms = new List<double>();
+            rooms.Add(1);
+            rooms.Add(2);
+            rooms.Add(3);
+            rooms.Add(3.50);
+            rooms.Add(4);
+            rooms.Add(4.50);
+            rooms.Add(5);
             Random rand = new Random(Guid.NewGuid().GetHashCode());
-            int randomEnum = rand.Next(room.Length);
-            var res = Enum.Parse(typeof(Rooms), room[randomEnum]);
-            return res.ToString();
-        } 
+            var res = rand.Next(1, rooms.Count - 1);
+            return Convert.ToDouble(res);
+        }
 
         private int randDamage(string type)
         {
@@ -61,16 +67,5 @@ namespace Classes.Failures
         DamageToCrew,
         DamageToStarship,
         DamageToRolls
-    }
-
-    public enum Rooms
-    {
-        Cockpit,
-        Greenhouse,
-        Infirmary,
-        Laboratory,
-        Relaxation,
-        Survival,
-        Maintenance
     }
 }

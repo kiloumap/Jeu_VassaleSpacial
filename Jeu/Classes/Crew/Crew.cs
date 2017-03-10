@@ -35,9 +35,9 @@ namespace Classes.Crew
             rooms.Add(1);
             rooms.Add(2);
             rooms.Add(3);
-            rooms.Add(3.10);
+            rooms.Add(3.50);
             rooms.Add(4);
-            rooms.Add(4.10);
+            rooms.Add(4.50);
             rooms.Add(5);
             Random rand = new Random(Guid.NewGuid().GetHashCode());
             var res = rand.Next(1,rooms.Count-1);

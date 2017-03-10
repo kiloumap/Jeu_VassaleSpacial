@@ -43,6 +43,7 @@
     <Compile Include="BusinessCrew.cs" />
     <Compile Include="BusinessFailure.cs" />
     <Compile Include="BusinessJeu.cs" />
+    <Compile Include="BusinessRoom.cs" />
     <Compile Include="BusinessStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
