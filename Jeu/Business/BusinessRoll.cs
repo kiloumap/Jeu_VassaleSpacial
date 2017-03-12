@@ -29,9 +29,9 @@ namespace Business
         {
             int toDraw = showNbRollToDrawPerCharac(id);
             int drawed = showNbRollDrawedPerCharac(id);
-            int total = toDraw + drawed;
             return toDraw + drawed;
         }
+
         private int showNbRollToDrawPerCharac(int id)
         {
             int i = 0;
@@ -45,7 +45,7 @@ namespace Business
         private int showNbRollDrawedPerCharac(int id)
         {
             int i = 0;
-            foreach (Roll roll in getRollsToDrawSpecificCharac(id))
+            foreach (Roll roll in getRollsDrawedSpecificCharac(id))
             {
                 i++;
             }
@@ -77,7 +77,7 @@ namespace Business
         public void drawRoll(int id)
         {
             List<Roll> listRoll = getRollsToDrawSpecificCharac(id);
-            if(listRoll.Count() != 0)
+            if(listRoll.Count() > 0)
             { 
                 foreach (Roll roll in listRoll)
                 {
@@ -96,7 +96,7 @@ namespace Business
         {
             List<Roll> toDraw = getRollsToDrawSpecificCharac(id);
             List<Roll> drawed = getRollsDrawedSpecificCharac(id);
-            if(toDraw.Count() > 0 && drawed.Count() > 0)
+            if(toDraw.Count() > 0 || drawed.Count() > 0)
             {
                 if (toDraw.Count() > 0)
                 {
@@ -148,7 +148,7 @@ namespace Business
             else
                 Console.WriteLine("Ce personnage n'a plus de dés");
         }
-        private void drawRollDrawed(int id)
+        public void drawRollDrawed(int id)
         {
             Console.WriteLine("Quel dés voulez vous relancer ?");
             int i = 0;
@@ -157,7 +157,7 @@ namespace Business
                 i++;
                 Console.WriteLine(i + " : || dés n° : " + roll.id + " || valeur : " + roll.value + " ||nombre de fois relancé : " + roll.NumberOfDrawed);
             }
-            if(checkIfDrawed(id))
+            if(checkIfDrawed(id) == true)
             {
                 char[] array = Console.ReadLine().ToCharArray();
                 for (int index = 0; index < array.Length; index++)

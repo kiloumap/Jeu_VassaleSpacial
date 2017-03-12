@@ -50,13 +50,12 @@ namespace Crud
         public static void addOne(int idCharac, Roll roll)
         {
             int idRoll;
-            if (BaseRoll.RollListDrawed.Count() != 0)
+            if (BaseRoll.RollListDrawed.Count() > 0)
                 idRoll = BaseRoll.RollListDrawed.Last().id + 1;
             else
                 idRoll = 1;
             Random rand = new Random(Guid.NewGuid().GetHashCode());
-            roll.value = rand.Next(1, 7);
-            BaseRoll.RollListDrawed.Add(new Roll() { id = idRoll, idCrew = idCharac });
+            BaseRoll.RollListDrawed.Add(new Roll() { id = idRoll, idCrew = idCharac, value = rand.Next(1, 7) });
         }
     }
 }

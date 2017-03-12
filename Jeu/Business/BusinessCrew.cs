@@ -65,6 +65,7 @@ namespace Business
                 // tant que le personnage n'arrive pas à destination, il continue (sauf si il meurt :O)
                 while (finalRoom != mate.room)
                 {
+                    businessFailure.setDamage(id, Convert.ToDouble(mate.room));
                     // cas où on se rends dans une back room
                     if (finalRoom - Math.Truncate(finalRoom) == 0.5)
                     {
@@ -92,15 +93,16 @@ namespace Business
                         else
                             mate.room -= 1;
                     }
-                    businessFailure.setDamage(id, Convert.ToDouble(mate.room));
+                    
                 }
             }
         }
 
         /// <summary>
         /// Fonction privée pour connaître la destination de l'équipier
+        /// Converti l'entrée en salle double
         /// </summary>
-        /// <returns></returns>
+        /// <returns>le bon format de salle</returns>
         private double chooseRoom()
         {
             Console.WriteLine("Où voulez vous deplacer votre personnage ? ");
@@ -132,26 +134,47 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Fonction pour reparer les pannes
+        /// </summary>
+        /// <param name="charac">id du personnage</param>
         public void repair(int charac)
         {
             Crew mate = CrudCrew.getOne(charac);
             BusinessFailure businessFailure = new BusinessFailure();
             BusinessRoll roll = new BusinessRoll();
             businessFailure.displayFailureHere(mate.room);
-            int choice = int.Parse(Console.ReadLine());
-            if(roll.getRollsDrawedSpecificCharac(charac).Count() > 0)
+            if (businessFailure.getFailureHere(mate.id).Count() > 0)
             {
-                roll.showRollstdrawed(charac);
-                Console.WriteLine("Quelle dés voulez vous utiliser ?");
+                if (roll.getRollsDrawedSpecificCharac(charac).Count() > 0)
+                {
+                    Console.WriteLine("Quelle panne voulez vous réparer ?");
+                    int choice = int.Parse(Console.ReadLine());
+                    roll.showRollstdrawed(charac);
+                    Console.WriteLine("Quelle dés voulez vous utiliser ?");
+                    char[] array = Console.ReadLine().ToCharArray();
+                    for (int index = 0; index < array.Length; index++)
+                    {
+                        int idRoll = (int)Char.GetNumericValue(array[index]);
+                        Roll rollToSpend = CrudRollDrawed.getOne(idRoll);
+                        Failure failure = CrudFailure.getOne(choice);
+                        CrudFailure.Update(failure.id, failure.life - rollToSpend.value);
+                    }
+                }
+                else if (roll.getRollsToDrawSpecificCharac(charac).Count() > 0)
+                {
+                    roll.showRollstoDraw(charac);
+                    Console.WriteLine("Vous n'avez plus de dés stocké, il faut en relancer.");
+                }
+                else
+                {
+                    Console.WriteLine("Vous n'avez plus de dés à utiliser avec ce personnage");
+                }
             }
-
+            else
+                Console.WriteLine("Il n'y a pas de panne à reparer ici");
         }
-
-        private void choiceToUseOrDraw()
-        {
-            BusinessRoll roll = new BusinessRoll();
-            roll.showRolls(charac);
-        }
+       
         /// <summary>
         /// Fonction qui prends en paramètre l'id de l'équipier et qui fait appel au skill spécial de ce dernier
         /// </summary>

@@ -27,9 +27,7 @@ namespace Business
             on affiche un speech disant les nouvelles pannes etc...
             */
             BusinessFailure failure = new BusinessFailure();
-
             failure.checkFailure();
-
             gameOver();
             failure.setFailure(week);
         }

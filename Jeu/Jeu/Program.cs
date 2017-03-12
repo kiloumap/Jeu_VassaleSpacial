@@ -106,9 +106,12 @@ namespace Jeu
                     CharacAction(charac);
                     break;
                 case "4":
+                    crew.repair(idCrew);
+                    CharacAction(charac);
                     break;
                 case "5":
                     crew.specialSkill(idCrew);
+                    CharacAction(charac);
                     break;
             }
         }

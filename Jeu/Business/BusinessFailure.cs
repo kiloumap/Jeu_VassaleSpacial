@@ -14,14 +14,15 @@ namespace Business
     {
         public void displayFailureHere(double room)
         {
+            BusinessRoom businessRoom = new BusinessRoom();
             foreach(Failure failure in getFailureHere(room))
             {
-                Console.WriteLine("Faillure n° : {0} -> {1} panne qui inflige {2} dégats {3} sur {4}",failure.id, failure.name, failure.damage, failure.typeDamage);
+                Console.WriteLine(string.Format("Panne n° : {0} -> {1} panne qui inflige {2} dégats {3} dans {4}",failure.id, failure.name, failure.damage, failure.typeDamage, businessRoom.showSpecificRoom(room)));
             }
         }
 
 
-        private List<Failure> getFailureHere(double room)
+        public List<Failure> getFailureHere(double room)
         {
             List<Failure> failures = new List<Failure>();
             foreach(Failure failure in CrudFailure.getAll())
@@ -89,6 +90,25 @@ namespace Business
                 }
             }
         }
+
+        public string displayNameFailure(string typeDamage)
+        {
+            string damage = "";
+            switch (typeDamage)
+            {
+                case "DamageToCrew":
+                    damage = "dégats sur l'équipage";
+                    break;
+                case "DamageToRolls":
+                    damage = "dégats sur les dés de l'équipage";
+                    break;
+                case "DamageToStarship":
+                    damage = "dégats sur le vaisseau";
+                    break;
+            }
+            return damage;
+        }
+
 
         public void setFailure(int week)
         {

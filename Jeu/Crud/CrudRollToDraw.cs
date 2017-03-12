@@ -15,7 +15,7 @@ namespace Crud
             List<Roll> list = new List<Roll>();
             foreach (Roll item in BaseRoll.RollListToDraw)
             {
-                    list.Add(item);
+                list.Add(item);
             }
             return list;
         }

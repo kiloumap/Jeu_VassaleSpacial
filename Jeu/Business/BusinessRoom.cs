@@ -1,4 +1,5 @@
 ﻿using Classes.Starship;
+using Crud;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,13 +8,12 @@ using System.Threading.Tasks;
 
 namespace Business
 {
-    class BusinessRoom
+    public class BusinessRoom
     {
         public void showRooms()
         {
             int i = 0;
-            List<Room> rooms = Crud.CrudRoom.getAll();
-            foreach (Room room in rooms)
+            foreach (Room room in CrudRoom.getAll())
             {
                 i++;
                 Console.WriteLine(string.Format(i + " : Salle " + room.name));
@@ -21,5 +21,15 @@ namespace Business
             Console.WriteLine(Environment.NewLine);
         }
 
+        public string showSpecificRoom(double position)
+        {
+            string name = "";
+            foreach(Room room in CrudRoom.getAll())
+            {
+                if (room.position == position)
+                    name = room.name;
+            }
+            return name;
+        }
     }
 }

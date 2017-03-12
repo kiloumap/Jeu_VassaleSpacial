@@ -16,7 +16,7 @@ namespace Classes.Roll
         /// </summary>
         public int id { get; set; }
         /// <summary>
-        /// Valeur 0 par défaut
+        /// Valeur
         /// </summary>
         public int value { get; set; }
         /// <summary>
@@ -33,7 +33,6 @@ namespace Classes.Roll
         /// </summary>
         public Roll()
         {
-            value = 0;
             NumberOfDrawed = 0;
         }
     }

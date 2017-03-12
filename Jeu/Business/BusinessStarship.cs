@@ -16,24 +16,12 @@ namespace Business
         {
             List<Failure> failure = CrudFailure.getAll();
             Starship starship = CrudStarship.getOne();
-            Console.WriteLine("Le {} à {}", starship.name, starship.life);
+            BusinessFailure fail = new BusinessFailure();
+            Console.WriteLine("Le {0} à {1}", starship.name, starship.life);
             foreach(Failure item in failure)
             {
                 Room rRoom = CrudRoom.getOne(item.room);
-                string damage = "";
-                switch (item.typeDamage)
-                {
-                    case "DamageToCrew":
-                        damage = "dégat sur l'équipage";
-                        break;
-                    case "DamageToRolls":
-                        damage = "dégat sur les dés de l'équipage";
-                        break;
-                    case "DamageToStarship":
-                        damage = "dégat sur le vaisseau";
-                        break;
-                }
-                Console.WriteLine(string.Format("Il y a une " + item.name + " panne dans la salle " + rRoom.name + " qui occasionne des " + damage));
+                Console.WriteLine("{0} panne avec {1} point de vie, occasionne des {2} dans la salle {3}", item.name, item.life, fail.displayNameFailure(item.typeDamage), rRoom.name);
             }
         }
 
