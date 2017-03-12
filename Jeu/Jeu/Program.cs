@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FausseDb;
 using Classes.Failures;
 using Classes.Starship;
 using Business;
@@ -57,7 +56,12 @@ namespace Jeu
             string Menu3 = "3 : Choisir un membre de l'équipage";
             string Menu4 = "4 : Tour suivant";
             string Menu9 = "9 : Abandonner la partie";
-            Console.WriteLine(string.Format("Quelle opération desirez vous faire ? " + Environment.NewLine + "{0}" + Environment.NewLine + "{1}" + Environment.NewLine + "{2}" + Environment.NewLine + "{3}" + Environment.NewLine + "{4}", Menu1, Menu2, Menu3, Menu4, Menu9));
+            Console.WriteLine(string.Format(Environment.NewLine + "Quelle opération desirez vous faire ? " + 
+                                            Environment.NewLine + "{0}" + 
+                                            Environment.NewLine + "{1}" + 
+                                            Environment.NewLine + "{2}" + 
+                                            Environment.NewLine + "{3}" + 
+                                            Environment.NewLine + "{4}", Menu1, Menu2, Menu3, Menu4, Menu9));
             return true;
         }
 
@@ -65,31 +69,46 @@ namespace Jeu
         {
             string Action0 = "0 : Retour";
             string Action1 = "1 : Deplacer le personnage";
-            string Action2 = "2 : Réparer la panne un dés";
-            string Action3 = "3 : Activer la capacité spécial";
-            Console.WriteLine(string.Format("Quelle opération desirez vous faire ? " + Environment.NewLine + "{0}" + Environment.NewLine + "{1}" + Environment.NewLine + "{2}" + Environment.NewLine + "{3}", Action0, Action1, Action2, Action3 ));
+            string Action2 = "2 : Voir la liste des dés";
+            string Action3 = "3 : Lancer les dés";
+            string Action4 = "4 : Réparer la panne avec un dés";
+            string Action5 = "5 : Activer la capacité spécial";
+            Console.WriteLine(string.Format(Environment.NewLine +"Quelle opération desirez vous faire ? " + 
+                                            Environment.NewLine + "{0}" + 
+                                            Environment.NewLine + "{1}" + 
+                                            Environment.NewLine + "{2}" + 
+                                            Environment.NewLine + "{3}" +
+                                            Environment.NewLine + "{4}" +
+                                            Environment.NewLine + "{5}", Action0, Action1, Action2, Action3, Action4, Action5 ));
             string choice = Console.ReadLine();
             showCharacMenu(choice, charac);
         }
 
         private static void showCharacMenu(string choice, string charac)
         {
+            int idCrew = int.Parse(charac);
             BusinessCrew crew = new BusinessCrew();
+            BusinessRoll roll = new BusinessRoll();
             switch (choice)
             {
                 case "0":
                     break;
                 case "1":
-                    crew.mooveCharac(charac);
+                    crew.mooveCharac(idCrew);
                     CharacAction(charac);
                     break;
                 case "2":
-                    //useRoll(); // Faire la classe dés + prevoir le stockage dans une propriété boolean
+                    roll.showRolls(idCrew);
                     CharacAction(charac);
                     break;
                 case "3":
-                    //useSkill();
+                    roll.drawRoll(idCrew);
                     CharacAction(charac);
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    crew.specialSkill(idCrew);
                     break;
             }
         }

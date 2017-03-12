@@ -12,13 +12,34 @@ namespace Business
 {
     public class BusinessFailure
     {
+        public void displayFailureHere(double room)
+        {
+            foreach(Failure failure in getFailureHere(room))
+            {
+                Console.WriteLine("Faillure n° : {0} -> {1} panne qui inflige {2} dégats {3} sur {4}",failure.id, failure.name, failure.damage, failure.typeDamage);
+            }
+        }
+
+
+        private List<Failure> getFailureHere(double room)
+        {
+            List<Failure> failures = new List<Failure>();
+            foreach(Failure failure in CrudFailure.getAll())
+            {
+                if(failure.room == room && failure.active == true)
+                    failures.Add(failure);
+            }
+            return failures;
+        }
+
         public void setDamage(int id, double room)
         {
             Crew charac = CrudCrew.getOne(id);
+            BusinessRoll roll = new BusinessRoll();
             List<Failure> failures = CrudFailure.getAll();
             foreach(Failure failure in failures)
             {
-                if(room == failure.room && failure.active == 1)
+                if(room == failure.room && failure.active == true)
                 {
                     if (failure.typeDamage == TypeDamage.DamageToCrew.ToString())
                     {
@@ -27,7 +48,7 @@ namespace Business
                     }
                     else if(failure.typeDamage == TypeDamage.DamageToRolls.ToString())
                     {
-                        charac.numberRolls -= failure.damage;
+                        roll.removeRollsPerRound(id);
                         Console.WriteLine("Vous avez traversez une salle avec une panne non résolue. Votre personnage à perdu {0} dès", failure.damage);
                     }
                 }
@@ -39,7 +60,7 @@ namespace Business
             List<Failure> failures = CrudFailure.getAll();
             foreach (Failure failure in failures)
             {
-                if (failure.active == 1)
+                if (failure.active == true)
                 {
                     int damage = failure.damage;
                     List<Crew> team = CrudCrew.getAll();
@@ -50,7 +71,7 @@ namespace Business
                             foreach (Crew mate in team)
                             {
                                 int lifeCrew = mate.life - damage;
-                                CrudCrew.modify(mate.id, mate.name, lifeCrew, mate.numberRolls, mate.room);
+                                CrudCrew.modify(mate.id, mate.name, lifeCrew, mate.room);
                             }
                             Console.WriteLine("L'équipage à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
                             break;
@@ -60,11 +81,8 @@ namespace Business
                             Console.WriteLine("Le vaisseau à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
                             break;
                         case "DamageToRolls":
-                            foreach (Crew mate in team)
-                            {
-                                int rolls = mate.numberRolls - damage;
-                                CrudCrew.modify(mate.id, mate.name, mate.life, rolls, mate.room);
-                            }
+                            BusinessRoll roll = new BusinessRoll();
+                            roll.removeRollsPerRound(damage);
                             Console.WriteLine("L'équipage à perdu {0} dés a cause d'une panne non résolue", damage.ToString());
                             break;
                     }

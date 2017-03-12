@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Crud.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,8 @@
   <ItemGroup>
     <Compile Include="CrudCrew.cs" />
     <Compile Include="CrudFailure.cs" />
+    <Compile Include="CrudRollDrawed.cs" />
+    <Compile Include="CrudRollToDraw.cs" />
     <Compile Include="CrudRoom.cs" />
     <Compile Include="CrudStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

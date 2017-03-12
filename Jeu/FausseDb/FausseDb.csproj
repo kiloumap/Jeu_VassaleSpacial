@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\FausseDb.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,6 +43,7 @@
   <ItemGroup>
     <Compile Include="BaseCrew.cs" />
     <Compile Include="BaseFailure.cs" />
+    <Compile Include="BaseRoll.cs" />
     <Compile Include="BaseRoom.cs" />
     <Compile Include="BaseStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

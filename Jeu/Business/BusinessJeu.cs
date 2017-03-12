@@ -8,6 +8,8 @@ using Crud;
 using Classes;
 using Classes.Failures;
 using Classes.Starship;
+using Classes.Roll;
+
 namespace Business
 {
     public static class BusinessJeu
@@ -25,8 +27,9 @@ namespace Business
             on affiche un speech disant les nouvelles pannes etc...
             */
             BusinessFailure failure = new BusinessFailure();
+
             failure.checkFailure();
-            setRolls();
+
             gameOver();
             failure.setFailure(week);
         }
@@ -43,19 +46,5 @@ namespace Business
                 Console.WriteLine("GAME OVER !!!!!");
                 // TO DO : Console.Application.Close(0);
         }
-
-        private static void setRolls()
-        {
-            List<Crew> crew = CrudCrew.getAll();
-            foreach(Crew mate in crew)
-            {
-                if (mate.numberRolls > 1)
-                    mate.numberRolls -= 1;
-                else
-                    mate.numberRolls = 1;
-            }
-        }
-
-
     }
 }

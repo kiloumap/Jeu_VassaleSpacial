@@ -20,6 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Business.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -43,6 +44,7 @@
     <Compile Include="BusinessCrew.cs" />
     <Compile Include="BusinessFailure.cs" />
     <Compile Include="BusinessJeu.cs" />
+    <Compile Include="BusinessRoll.cs" />
     <Compile Include="BusinessRoom.cs" />
     <Compile Include="BusinessStarship.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
