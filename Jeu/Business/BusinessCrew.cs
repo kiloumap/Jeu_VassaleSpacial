@@ -126,7 +126,7 @@ namespace Business
             foreach (Crew mate in list)
             {
                 List<Roll> rolls = CrudRollToDraw.getAll();
-            Room rRoom = CrudRoom.getOne(mate.room);
+                Room rRoom = CrudRoom.getOne(mate.room);
                 BusinessRoll businessRoll = new BusinessRoll();
                 i++;
                 Console.WriteLine(string.Format(i + " Le {0} a {1} pdv restant, il à {2} dés restant, il est dans la salle de {3}", 
@@ -144,13 +144,13 @@ namespace Business
             BusinessFailure businessFailure = new BusinessFailure();
             BusinessRoll roll = new BusinessRoll();
             businessFailure.displayFailureHere(mate.room);
-            if (businessFailure.getFailureHere(mate.id).Count() > 0)
+            if (businessFailure.getFailureHere(mate.room).Count() > 0)
             {
                 if (roll.getRollsDrawedSpecificCharac(charac).Count() > 0)
                 {
                     Console.WriteLine("Quelle panne voulez vous réparer ?");
                     int choice = int.Parse(Console.ReadLine());
-                    roll.showRollstdrawed(charac);
+                    roll.showRollsdrawed(charac);
                     Console.WriteLine("Quelle dés voulez vous utiliser ?");
                     char[] array = Console.ReadLine().ToCharArray();
                     for (int index = 0; index < array.Length; index++)

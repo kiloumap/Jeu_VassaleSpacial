@@ -17,7 +17,7 @@ namespace Business
             List<Failure> failure = CrudFailure.getAll();
             Starship starship = CrudStarship.getOne();
             BusinessFailure fail = new BusinessFailure();
-            Console.WriteLine("Le {0} à {1}", starship.name, starship.life);
+            Console.WriteLine("Le {0} a {1} point de vie restant", starship.name, starship.life);
             foreach(Failure item in failure)
             {
                 Room rRoom = CrudRoom.getOne(item.room);

@@ -34,7 +34,10 @@ namespace Jeu
                         crew.ShowListCrew();
                         Console.WriteLine("Quel personnage voulez vous jouer ? ");
                         string charac = Console.ReadLine();
-                        CharacAction(charac);
+                        if (int.Parse(charac) > 0 && int.Parse(charac) < 6)
+                            CharacAction(charac);
+                        else
+                            Console.WriteLine("Veuillez choisir un personage valide");
                         break;
                     case "4":
                         week += 1;
@@ -82,6 +85,7 @@ namespace Jeu
                                             Environment.NewLine + "{5}", Action0, Action1, Action2, Action3, Action4, Action5 ));
             string choice = Console.ReadLine();
             showCharacMenu(choice, charac);
+            
         }
 
         private static void showCharacMenu(string choice, string charac)

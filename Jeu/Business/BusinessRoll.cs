@@ -133,7 +133,7 @@ namespace Business
                 Console.WriteLine("Ce personnage n'a plus de dés à jouer");
         }
 
-        public void showRollstdrawed(int id)
+        public void showRollsdrawed(int id)
         {
             List<Roll> drawed = getRollsDrawedSpecificCharac(id);
 
