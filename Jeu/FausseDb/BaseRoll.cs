@@ -8,9 +8,18 @@ using Classes.Roll;
 
 namespace FausseDb
 {
+    /// <summary>
+    /// Base dé
+    /// </summary>
     public static class BaseRoll
     {
+        /// <summary>
+        /// Liste des dé non lancé
+        /// </summary>
         public static List<Roll> RollListToDraw { get; set; }
+        /// <summary>
+        /// Liste des dé lancé
+        /// </summary>
         public static List<Roll> RollListDrawed { get; set; }
         static BaseRoll()
         {

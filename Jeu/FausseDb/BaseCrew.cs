@@ -8,8 +8,14 @@ using Classes.Crew;
 
 namespace FausseDb
 {
+    /// <summary>
+    /// Base équipier
+    /// </summary>
     public static class BaseCrew
     {
+        /// <summary>
+        /// Liste des équipiers
+        /// </summary>
         public static List<Crew> CrewList { get; set; }
         static BaseCrew()
         {

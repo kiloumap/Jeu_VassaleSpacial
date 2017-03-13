@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace Business
 {
+    /// <summary>
+    /// Classe business des pannes. 
+    /// Gére tout les traitements spécifiques des pannes
+    /// </summary>
     public class BusinessFailure
     {
+        /// <summary>
+        /// Fonction qui affiche les pannes qui sont dans la salle (qu'on passe en paramètre)
+        /// </summary>
+        /// <param name="room">position de la salle</param>
         public void displayFailureHere(double room)
         {
             BusinessRoom businessRoom = new BusinessRoom();
@@ -21,7 +29,11 @@ namespace Business
             }
         }
 
-
+        /// <summary>
+        /// Fonction qui retourne la liste de panne de la salle (qu'on passe en paramètre)
+        /// </summary>
+        /// <param name="room">position de la salle</param>
+        /// <returns>Liste des pannes</returns>
         public List<Failure> getFailureHere(double room)
         {
             List<Failure> failures = new List<Failure>();
@@ -33,6 +45,11 @@ namespace Business
             return failures;
         }
 
+        /// <summary>
+        /// Fonction qui inflige les dégats en fonction du type de domage
+        /// </summary>
+        /// <param name="id">id du mate</param>
+        /// <param name="room">position de la salle</param>
         public void setDamage(int id, double room)
         {
             Crew charac = CrudCrew.getOne(id);
@@ -56,6 +73,9 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Fonction qui inflige les dégats des pannes non résolues à la fin de la partie
+        /// </summary>
         public void checkFailure()
         {
             List<Failure> failures = CrudFailure.getAll();
@@ -91,6 +111,11 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Fonction qui affiche le bon wording des pannes
+        /// </summary>
+        /// <param name="typeDamage">Enum TypeDamge</param>
+        /// <returns>le type de dégats en string</returns>
         public string displayNameFailure(string typeDamage)
         {
             string damage = "";
@@ -109,7 +134,10 @@ namespace Business
             return damage;
         }
 
-
+        /// <summary>
+        /// Fonction pour créer les pannes à chaque semaine
+        /// </summary>
+        /// <param name="week">semaine courante</param>
         public void setFailure(int week)
         {
             switch (week)

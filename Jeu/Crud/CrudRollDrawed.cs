@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Crud
 {
+    /// <summary>
+    /// Crud dés stocké
+    /// </summary>
     public class CrudRollDrawed
     {
         public static List<Roll> getAll()
@@ -20,6 +23,11 @@ namespace Crud
             return list;
         }
 
+        /// <summary>
+        /// Fonction qui récupere un dés
+        /// </summary>
+        /// <param name="id">id dé</param>
+        /// <returns>Dé</returns>
         public static Roll getOne(int id)
         {
             Roll res = null;
@@ -33,6 +41,13 @@ namespace Crud
             return res;
         }
 
+        /// <summary>
+        /// Fonction qui modifie un dé stocké
+        /// </summary>
+        /// <param name="id">id dé stocké</param>
+        /// <param name="value">valeur dé stocké</param>
+        /// <param name="NumberOfDrawed">nombre de lancé du dé stocké</param>
+        /// <param name="idCrew">id propriétaire dés</param>
         public static void modify(int id, int value, int NumberOfDrawed, int idCrew)
         {
             Roll item = getOne(id);
@@ -41,12 +56,21 @@ namespace Crud
             item.idCrew = idCrew;
         }
 
+        /// <summary>
+        /// Fonction supprime un dés
+        /// </summary>
+        /// <param name="id">id du dé</param>
         public static void deleteOne (int id)
         {
             Roll item = getOne(id);
             BaseRoll.RollListDrawed.RemoveAll(x => x.id == id);
         }
 
+        /// <summary>
+        /// Fonction qui stock un dé
+        /// </summary>
+        /// <param name="idCharac">id du propriétaire</param>
+        /// <param name="roll">Dé</param>
         public static void addOne(int idCharac, Roll roll)
         {
             int idRoll;

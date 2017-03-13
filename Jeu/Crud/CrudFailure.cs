@@ -7,8 +7,16 @@ using FausseDb;
 using Classes.Failures;
 namespace Crud
 {
+    /// <summary>
+    /// Crud panne
+    /// </summary>
     public class CrudFailure
     {
+
+        /// <summary>
+        /// Fonction qui return la totalité des pannes
+        /// </summary>
+        /// <returns>List Panne</returns>
         public static List<Failure> getAll()
         {
             List<Failure> list = new List<Failure>();
@@ -19,6 +27,11 @@ namespace Crud
             return list;
         }
 
+        /// <summary>
+        /// Fonction qui return un panne
+        /// </summary>
+        /// <param name="id">id panne</param>
+        /// <returns>panne</returns>
         public static Failure getOne(int id)
         {
             Failure res = null;
@@ -32,13 +45,23 @@ namespace Crud
             return res;
         }
 
-        public static Failure Update(int id, int life)
+        /// <summary>
+        /// Fonction qui mets à jour les pannes
+        /// </summary>
+        /// <param name="id">id panne</param>
+        /// <param name="life">vie panne</param>
+        public static void Update(int id, int life)
         {
             Failure item = getOne(id);
             item.life = life;
-            return item;
         }
         
+        /// <summary>
+        /// Fonction qui créé des pannes
+        /// </summary>
+        /// <param name="typeOfFailure">type de pann</param>
+        /// <param name="id">id panne</param>
+        /// <param name="week">semaine</param>
         public static void create(string typeOfFailure, int id, int week)
         {
             if (typeOfFailure == "small")

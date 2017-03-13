@@ -55,17 +55,21 @@ namespace Business
             // On affiche les salles
             businessRoom.showRooms();
             // Et on indique où se trouve le personnage
-            Console.WriteLine("Votre personnage est dans la salle "+mate.room);
+            int currentRoom = Convert.ToInt32(mate.room);
+            if(currentRoom == 3.5)
+                currentRoom = 4;
+            if (mate.room == 4.5)
+                currentRoom = 6;
+            Console.WriteLine("Votre personnage est dans la salle "+ currentRoom);
             // On lance la methode pour choisir la salle de destination
             double finalRoom = chooseRoom();
-
+            double lastRoom = mate.room;
             // On deplace le personnage
-            if (finalRoom >= 1 || finalRoom <= 7)
+            if (finalRoom >= 1 && finalRoom <= 7)
             {
                 // tant que le personnage n'arrive pas à destination, il continue (sauf si il meurt :O)
                 while (finalRoom != mate.room)
                 {
-                    businessFailure.setDamage(id, Convert.ToDouble(mate.room));
                     // cas où on se rends dans une back room
                     if (finalRoom - Math.Truncate(finalRoom) == 0.5)
                     {
@@ -93,7 +97,6 @@ namespace Business
                         else
                             mate.room -= 1;
                     }
-                    
                 }
             }
         }

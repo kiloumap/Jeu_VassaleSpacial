@@ -7,6 +7,9 @@ using FausseDb;
 using Classes.Starship;
 namespace Crud
 {
+    /// <summary>
+    /// Crud room
+    /// </summary>
     public class CrudRoom
     {
         public static List<Room> getAll()
@@ -19,6 +22,11 @@ namespace Crud
             return list;
         }
 
+        /// <summary>
+        /// Fonction qui récupère une salle
+        /// </summary>
+        /// <param name="position">position</param>
+        /// <returns>une salle</returns>
         public static Room getOne(double position)
         {
             Room res = null;

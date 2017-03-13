@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 using Classes.Starship;
 namespace FausseDb
 {
+    /// <summary>
+    /// base room
+    /// </summary>
     public static class BaseRoom
     {
+        /// <summary>
+        /// Liste des salles
+        /// </summary>
         public static List<Room> RoomList{ get; set; }
         static BaseRoom()
         {

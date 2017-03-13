@@ -9,8 +9,17 @@ using Business;
 
 namespace Jeu
 {
+    /// <summary>
+    /// Application console
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Point d'entrée de l'application
+        /// Affiche le message de debut + lance la premiere semaine et lance le menu
+        /// tant qu'on recupere pas le false de Exit() ca se relance
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             Console.WriteLine("!! Bonjour !!");
@@ -52,6 +61,10 @@ namespace Jeu
             }
         }
 
+        /// <summary>
+        /// Fonction appeler pour afficher le menu principal 
+        /// </summary>
+        /// <returns></returns>
         private static bool ShowMenu()
         {
             string Menu1 = "1 : Voir l'état du vaisseau";
@@ -68,6 +81,10 @@ namespace Jeu
             return true;
         }
 
+        /// <summary>
+        /// Fonction pour le menu personnage
+        /// </summary>
+        /// <param name="charac"></param>
         private static void CharacAction(string charac)
         {
             string Action0 = "0 : Retour";
@@ -88,6 +105,11 @@ namespace Jeu
             
         }
 
+        /// <summary>
+        /// Menu des personnages
+        /// </summary>
+        /// <param name="choice">choix de l'utilisateur</param>
+        /// <param name="charac">id personnage</param>
         private static void showCharacMenu(string choice, string charac)
         {
             int idCrew = int.Parse(charac);
@@ -119,6 +141,11 @@ namespace Jeu
                     break;
             }
         }
+
+        /// <summary>
+        /// Fonction pour quitter l'application
+        /// </summary>
+        /// <returns>false</returns>
         private static bool exit()
         {
             Console.WriteLine(string.Format(Environment.NewLine + "!!! Merci, au revoir !!!"));

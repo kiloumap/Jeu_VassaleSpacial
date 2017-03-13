@@ -7,8 +7,15 @@ using FausseDb;
 using Classes.Crew;
 namespace Crud
 {
+    /// <summary>
+    /// Crud crew
+    /// </summary>
     public class CrudCrew
     {
+        /// <summary>
+        /// Fonction qui return la totalité de l'équipage
+        /// </summary>
+        /// <returns>List Crew</returns>
         public static List<Crew> getAll()
         {
             List<Crew> list = new List<Crew>();
@@ -19,6 +26,11 @@ namespace Crud
             return list;
         }
 
+        /// <summary>
+        /// Fonction qui return un equipier
+        /// </summary>
+        /// <param name="id">id equipier</param>
+        /// <returns>Mate</returns>
         public static Crew getOne(int id)
         {
             Crew res = null;
@@ -32,13 +44,19 @@ namespace Crud
             return res;
         }
 
-        public static Crew modify(int id, string name, int life, double room)
+        /// <summary>
+        /// Fonction qui modifie un équipier
+        /// </summary>
+        /// <param name="id">id équipier</param>
+        /// <param name="name">nom équipier</param>
+        /// <param name="life">vie équipier</param>
+        /// <param name="room">position équipier</param>
+        public void  modify(int id, string name, int life, double room)
         {
             Crew item = getOne(id);
             item.name = name;
             item.life = life;
             item.room = room;
-            return item;
         }
 
         

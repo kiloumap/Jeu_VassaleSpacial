@@ -12,8 +12,17 @@ using Classes.Roll;
 
 namespace Business
 {
+    /// <summary>
+    /// Classe business du jeu
+    /// Gere le traitement du jeu (tour par tour / gameover)
+    /// </summary>
     public static class BusinessJeu
     {
+
+        /// <summary>
+        /// Fonction qui gére le tour par tour
+        /// </summary>
+        /// <param name="week">le numero de la semaine pour créér les panness</param>
         public static void round(int week)
         {
             /*
@@ -31,11 +40,12 @@ namespace Business
             gameOver();
             failure.setFailure(week);
         }
-
+        /// <summary>
+        /// Fonction qui verifie si la partie continue 
+        /// Si over = true : gameover
+        /// </summary>
         public static void gameOver()
         {
-            // Methode pour verifier si la partie est perdue ou pas
-            // si over = true c'est perdu
             BusinessStarship Starship = new BusinessStarship();
             BusinessCrew Crew = new BusinessCrew();
             bool starShipOver = Starship.CheckStarship();

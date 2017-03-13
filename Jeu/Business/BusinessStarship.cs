@@ -10,8 +10,15 @@ using Crud;
 
 namespace Business
 {
+    /// <summary>
+    /// Classe business du vaisseau 
+    /// Gère tout les traitements du vaisseau
+    /// </summary>
     public class BusinessStarship
     {
+        /// <summary>
+        /// Fonction qui affiche l'état du vaisseau
+        /// </summary>
         public void ShowStarShip()
         {
             List<Failure> failure = CrudFailure.getAll();
@@ -25,6 +32,10 @@ namespace Business
             }
         }
 
+        /// <summary>
+        /// Fonction qui verifie si le vaisseau est toujours en vie
+        /// </summary>
+        /// <returns>true : vaisseau mort, false : vaisseau en vie</returns>
         public bool CheckStarship()
         {
             Starship starship = Crud.CrudStarship.getOne();
