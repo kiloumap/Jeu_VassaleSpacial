@@ -12,6 +12,10 @@ namespace Crud
     /// </summary>
     public class CrudRoom
     {
+        /// <summary>
+        /// Fonction qui recupere la liste de salles
+        /// </summary>
+        /// <returns>la liste des salles</returns>
         public static List<Room> getAll()
         {
             List<Room> list = new List<Room>();
