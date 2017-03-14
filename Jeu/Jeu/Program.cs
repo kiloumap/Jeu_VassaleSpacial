@@ -22,9 +22,9 @@ namespace Jeu
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Console.WriteLine("!! Bonjour !!");
             int week = 1;
-            BusinessJeu.round(week);
+            if(BusinessJeu.start() == true)
+                BusinessJeu.round(week);
             BusinessStarship starship = new BusinessStarship();
             BusinessCrew crew = new BusinessCrew();
             while (true)
@@ -56,6 +56,7 @@ namespace Jeu
                         exit();
                         break;
                     default:
+                        Console.WriteLine("Veuillez saisir un choix parmis ceux proposés");
                         break;
                 }
             }

@@ -86,6 +86,7 @@ namespace Business
                     int damage = failure.damage;
                     List<Crew> team = CrudCrew.getAll();
                     Starship starship = CrudStarship.getOne();
+                    Console.ForegroundColor = ConsoleColor.Red;
                     switch (failure.typeDamage.ToString())
                     {
                         case "DamageToCrew":
@@ -107,10 +108,23 @@ namespace Business
                             Console.WriteLine("L'équipage à perdu {0} dés a cause d'une panne non résolue", damage.ToString());
                             break;
                     }
+                    Console.ForegroundColor = ConsoleColor.Blue;
                 }
             }
         }
 
+        public void showFailure(int week)
+        {
+            BusinessRoom room = new BusinessRoom();
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Cette semaine de nouvelles pannes sont apparues :");
+            foreach (Failure failure in CrudFailure.getAll())
+            {
+                if(failure.week == week)
+                    Console.WriteLine("Panne : {0}, {1} {2} dans la salle {3}", failure.name, failure.damage, displayNameFailure(failure.typeDamage), room.showSpecificRoom(failure.room));
+            }
+            Console.ForegroundColor = ConsoleColor.Blue;
+        }
         /// <summary>
         /// Fonction qui affiche le bon wording des pannes
         /// </summary>

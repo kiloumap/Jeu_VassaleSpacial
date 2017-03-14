@@ -20,25 +20,47 @@ namespace Business
     {
 
         /// <summary>
+        /// Fonction start
+        /// </summary>
+        public static bool start()
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine("Mayday Mayday, ici le commandant Jay Lapoisse du Vassale Spaciale, nous avons perdus 2 gars,");
+            Console.WriteLine("nous sommes en en orbite. Nous avons plus de carburants... A vous");
+            Console.WriteLine("Tour de contrôle à commandant Lapoisse, reçu, nous envoyons une capsule de ravitaillement.");
+            Console.WriteLine("Elle arrive dans 10 semaines. A vous.");
+            Console.WriteLine("Reçu, tour de contrôle, nous avons assez de vivre pour tenir 10 semaines. Depechez vous.");
+            Console.WriteLine("Capitaine Jay Lapoisse. Terminé.");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------");
+            Console.WriteLine("-----------------------------------------------------------------------------\n");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("A tout l'équipage, ici capitaine Lapoisse, la tour de contrôle nous envois une capsule,");
+            Console.WriteLine("nous devons tenir 10 semaines.");
+            Console.WriteLine("Restez vigilan, nous sommes hautement exposés. Nous ne pouvons pas eviter les astéroïdes...");
+            Console.WriteLine(" On va y arriver les gars !\n");
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("----- Demarrer la partie -----");
+            string start = Console.ReadLine();
+            if (start == null || start != null)
+                return true;
+            else
+                return false;
+        }
+        /// <summary>
         /// Fonction qui gére le tour par tour
         /// </summary>
         /// <param name="week">le numero de la semaine pour créér les panness</param>
         public static void round(int week)
         {
-            /*
-             * On instancie une valeur à 1 avant. 
-            Chaque tours on incrémentente cette valeur (=> num semaine)
-            On a plusieurs verification à faire : 
-                 - Check les pannes existantes
-                 - Faire les effets négatifs en fonction des pannes existantes (pertes vie vaisseaux / pertes vie equipages / pertes dés)
-                 - Check pdv du vaisseaux
-     
-            on affiche un speech disant les nouvelles pannes etc...
-            */
             BusinessFailure failure = new BusinessFailure();
             failure.checkFailure();
-            gameOver();
             failure.setFailure(week);
+            failure.showFailure(week);
+            gameOver();
+
         }
         /// <summary>
         /// Fonction qui verifie si la partie continue 
