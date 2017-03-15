@@ -70,9 +70,13 @@ namespace Business
                 // tant que le personnage n'arrive pas à destination, il continue (sauf si il meurt :O)
                 while (finalRoom != mate.room)
                 {
+                    foreach(Failure failures in businessFailure.getFailureHere(mate.room))
+                        businessFailure.setDamage(mate.id, mate.room);
                     // cas où on se rends dans une back room
                     if (finalRoom - Math.Truncate(finalRoom) == 0.5)
                     {
+                        if (mate.room - Math.Truncate(mate.room) == 0.5)
+                            mate.room -= 0.5;
                         // Une room temporaire pour être sur qu'on s'arrete a la bonne salle avant de tourner dans la back
                         double tempRoom = Math.Truncate(finalRoom);
                         while(mate.room != tempRoom)
@@ -128,12 +132,11 @@ namespace Business
             int i = 0;
             foreach (Crew mate in list)
             {
-                List<Roll> rolls = CrudRollToDraw.getAll();
-                Room rRoom = CrudRoom.getOne(mate.room);
+                Room room = CrudRoom.getOne(mate.room);
                 BusinessRoll businessRoll = new BusinessRoll();
                 i++;
                 Console.WriteLine(string.Format(i + " Le {0} a {1} pdv restant, il à {2} dés restant, il est dans la salle de {3}", 
-                    mate.name, mate.life, businessRoll.showNbRollSpecificCharac(mate.id), rRoom.name));
+                    mate.name, mate.life, businessRoll.showNbRollSpecificCharac(mate.id), room.name));
             }
         }
 

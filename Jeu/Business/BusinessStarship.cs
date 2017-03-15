@@ -21,14 +21,16 @@ namespace Business
         /// </summary>
         public void ShowStarShip()
         {
-            List<Failure> failure = CrudFailure.getAll();
             Starship starship = CrudStarship.getOne();
-            BusinessFailure fail = new BusinessFailure();
+            BusinessFailure businessFail = new BusinessFailure();
             Console.WriteLine("Le {0} a {1} point de vie restant", starship.name, starship.life);
-            foreach(Failure item in failure)
+            foreach(Failure item in CrudFailure.getAll())
             {
-                Room rRoom = CrudRoom.getOne(item.room);
-                Console.WriteLine("{0} panne avec {1} point de vie, occasionne des {2} dans la salle {3}", item.name, item.life, fail.displayNameFailure(item.typeDamage), rRoom.name);
+                if(item.active == true)
+                {
+                    Room room = CrudRoom.getOne(item.room);
+                    Console.WriteLine("Panne n°{0} : {1} panne avec {2} point de vie, occasionne des {3} dans la salle {4}", item.id, item.name, item.life, businessFail.displayNameFailure(item.typeDamage), room.name);
+                }
             }
         }
 
@@ -38,15 +40,11 @@ namespace Business
         /// <returns>true : vaisseau mort, false : vaisseau en vie</returns>
         public bool CheckStarship()
         {
-            Starship starship = Crud.CrudStarship.getOne();
+            Starship starship = CrudStarship.getOne();
             if (starship.life <= 0)
-            {
                 return true;
-            }
             else
-            {
                 return false;
-            }
         }
         
     }

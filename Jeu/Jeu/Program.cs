@@ -86,7 +86,7 @@ namespace Jeu
         /// Fonction pour le menu personnage
         /// </summary>
         /// <param name="charac"></param>
-        private static void CharacAction(string charac)
+        private static bool CharacAction(string charac)
         {
             string Action0 = "0 : Retour";
             string Action1 = "1 : Deplacer le personnage";
@@ -103,7 +103,8 @@ namespace Jeu
                                             Environment.NewLine + "{5}", Action0, Action1, Action2, Action3, Action4, Action5 ));
             string choice = Console.ReadLine();
             showCharacMenu(choice, charac);
-            
+
+            return true;
         }
 
         /// <summary>
