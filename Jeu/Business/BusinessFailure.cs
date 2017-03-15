@@ -25,7 +25,7 @@ namespace Business
             BusinessRoom businessRoom = new BusinessRoom();
             foreach(Failure failure in getFailureHere(room))
             {
-                Console.WriteLine(string.Format("Panne n° : {0} -> {1} panne qui inflige {2} dégats {3} dans {4}",failure.id, failure.name, failure.damage, failure.typeDamage, businessRoom.showSpecificRoom(room)));
+                Console.WriteLine(string.Format(" Panne n° : {0} -> {1} panne qui inflige {2} dégats {3} dans {4}",failure.id, failure.name, failure.damage, failure.typeDamage, businessRoom.showSpecificRoom(room)));
             }
         }
 
@@ -62,12 +62,12 @@ namespace Business
                     if (failure.typeDamage == TypeDamage.DamageToCrew.ToString())
                     {
                         charac.life -= failure.damage;
-                        Console.WriteLine("Vous avez traversez une salle avec une panne non résolue. Votre personnage à perdu {0} point de vie", failure.damage);
+                        Console.WriteLine(" Vous avez traversez une salle avec une panne non résolue. Votre personnage à perdu {0} point de vie", failure.damage);
                     }
                     else if(failure.typeDamage == TypeDamage.DamageToRolls.ToString())
                     {
                         roll.removeRollsPerRound(id);
-                        Console.WriteLine("Vous avez traversez une salle avec une panne non résolue. Votre personnage à perdu {0} dès", failure.damage);
+                        Console.WriteLine(" Vous avez traversez une salle avec une panne non résolue. Votre personnage à perdu {0} dès", failure.damage);
                     }
                 }
             }
@@ -93,19 +93,19 @@ namespace Business
                             foreach (Crew mate in team)
                             {
                                 int lifeCrew = mate.life - damage;
-                                CrudCrew.modify(mate.id, mate.name, lifeCrew, mate.room);
+                                CrudCrew.modify(mate.id, mate.name, lifeCrew, mate.room, mate.alive, mate.skillUsed);
                             }
-                            Console.WriteLine("L'équipage à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
+                            Console.WriteLine(" L'équipage à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
                             break;
                         case "DamageToStarship":
                             int lifeStarship = starship.life - damage;
                             CrudStarship.modify(lifeStarship);
-                            Console.WriteLine("Le vaisseau à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
+                            Console.WriteLine(" Le vaisseau à perdu {0} points de vie a cause d'une panne non résolue", damage.ToString());
                             break;
                         case "DamageToRolls":
                             BusinessRoll roll = new BusinessRoll();
                             roll.removeRollsPerRound(damage);
-                            Console.WriteLine("L'équipage à perdu {0} dés a cause d'une panne non résolue", damage.ToString());
+                            Console.WriteLine(" L'équipage à perdu {0} dés a cause d'une panne non résolue", damage.ToString());
                             break;
                     }
                     Console.ForegroundColor = ConsoleColor.White;
@@ -113,15 +113,20 @@ namespace Business
             }
         }
 
-        public void showFailure(int week)
+        /// <summary>
+        /// Fonction pour ecrire la liste des pannes qui apparaîsse
+        /// </summary>
+        /// <param name="week">Semaine</param>
+        public void weeklyFailure(int week)
         {
             BusinessRoom room = new BusinessRoom();
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            Console.WriteLine("Cette semaine de nouvelles pannes sont apparues :");
+            Console.WriteLine(" Cette semaine de nouvelles pannes sont apparues :");
+            int i = 1;
             foreach (Failure failure in CrudFailure.getAll())
             {
                 if(failure.week == week)
-                    Console.WriteLine("Panne : {0}, {1} {2} dans la salle {3}", failure.name, failure.damage, displayNameFailure(failure.typeDamage), room.showSpecificRoom(failure.room));
+                    Console.WriteLine(" " + i++ + " : {0} panne, {1} {2} dans la salle {3}", failure.name, failure.damage, displayNameFailure(failure.typeDamage), room.showSpecificRoom(failure.room));
             }
             Console.ForegroundColor = ConsoleColor.White;
         }

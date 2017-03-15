@@ -25,8 +25,5 @@ namespace FausseDb
             CrewList.Add(new Captain()     { id = 3 });
             CrewList.Add(new Commandant()  { id = 4 });
         }
-
-        
     }
-
 }

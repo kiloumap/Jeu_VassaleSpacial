@@ -51,12 +51,16 @@ namespace Crud
         /// <param name="name">nom équipier</param>
         /// <param name="life">vie équipier</param>
         /// <param name="room">position équipier</param>
-        public static void modify(int id, string name, int life, double room)
+        /// <param name="alive">état équipier</param>
+        /// <param name="skillUsed">nombre de fois sort spécial équipier</param>
+        public static void modify(int id, string name, int life, double room, bool alive, int skillUsed)
         {
             Crew item = getOne(id);
             item.name = name;
             item.life = life;
             item.room = room;
+            item.alive = alive;
+            item.skillUsed = skillUsed;
         }
 
         

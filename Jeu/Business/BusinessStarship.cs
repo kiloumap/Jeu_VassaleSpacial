@@ -23,13 +23,13 @@ namespace Business
         {
             Starship starship = CrudStarship.getOne();
             BusinessFailure businessFail = new BusinessFailure();
-            Console.WriteLine("Le {0} a {1} point de vie restant", starship.name, starship.life);
+            Console.WriteLine(" Le {0} a {1} point de vie restant", starship.name, starship.life);
             foreach(Failure item in CrudFailure.getAll())
             {
                 if(item.active == true)
                 {
                     Room room = CrudRoom.getOne(item.room);
-                    Console.WriteLine("Panne n°{0} : {1} panne avec {2} point de vie, occasionne des {3} dans la salle {4}", item.id, item.name, item.life, businessFail.displayNameFailure(item.typeDamage), room.name);
+                    Console.WriteLine(" Panne n°{0} : {1} panne avec {2} point de vie, occasionne des {3} dans la salle {4}", item.id, item.name, item.life, businessFail.displayNameFailure(item.typeDamage), room.name);
                 }
             }
         }

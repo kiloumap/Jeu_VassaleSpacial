@@ -157,7 +157,7 @@ namespace Business
                 }
             }
             else
-                Console.WriteLine("Ce personnage n'a plus de dés");
+                Console.WriteLine(" Ce personnage n'a plus de dés");
         }
 
         /// <summary>
@@ -176,7 +176,7 @@ namespace Business
                 }
             }
             else
-                Console.WriteLine("Ce personnage n'a plus de dés à jouer");
+                Console.WriteLine(" Ce personnage n'a plus de dés à jouer");
         }
 
         /// <summary>
@@ -196,7 +196,7 @@ namespace Business
                 }
             }
             else
-                Console.WriteLine("Ce personnage n'a plus de dés");
+                Console.WriteLine(" Ce personnage n'a plus de dés");
         }
 
         /// <summary>
@@ -205,12 +205,12 @@ namespace Business
         /// <param name="id">id équipier</param>
         private void drawRollDrawed(int id)
         {
-            Console.WriteLine("Quel dés voulez vous relancer ?");
+            Console.WriteLine(" Quel dés voulez vous relancer ?");
             int i = 0;
             foreach (Roll roll in getRollsDrawedSpecificCharac(id))
             {
                 i++;
-                Console.WriteLine(i + " : || dés n° : " + roll.id + " || valeur : " + roll.value + " ||nombre de fois relancé : " + roll.NumberOfDrawed);
+                Console.WriteLine(" " + i + " : || dés n° : " + roll.id + " || valeur : " + roll.value + " ||nombre de fois relancé : " + roll.NumberOfDrawed);
             }
             if(checkIfDrawed(id) == true)
             {
@@ -227,7 +227,7 @@ namespace Business
                         CrudRollDrawed.modify(idRoll, value, NumberOfDrawed, id);
                     }
                     else
-                        Console.WriteLine("Le dés {0} à déjà été lancé 3 fois", roll.id);
+                        Console.WriteLine(" Le dés {0} à déjà été lancé 3 fois", roll.id);
                 }
             }
         }
@@ -247,7 +247,7 @@ namespace Business
             }
             if (numberOfDisable == getRollsDrawedSpecificCharac(id).Count())
             {
-                Console.WriteLine("Tout les dés ont déja été joué 3 fois");
+                Console.WriteLine(" Tout les dés ont déja été joué 3 fois");
                 return false;
             }
             else

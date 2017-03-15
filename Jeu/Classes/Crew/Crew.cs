@@ -33,16 +33,23 @@ namespace Classes.Crew
         /// </summary>
         public bool alive { get; set; }
         /// <summary>
+        /// Nombre de fois où le coup spécial à été fait
+        /// </summary>
+        public int skillUsed { get; set; }
+
+
+        /// <summary>
         /// Vie aleatoire 2 - 4
         /// Position de la salle aléatoire
         /// En vie
+        /// Nombre de fois où le skill à été lancé
         /// </summary>
-        
         public Crew()
         {
             life = randomize();
             room = randRoom();
             alive = true;
+            skillUsed = 0;
         }
 
         /// <summary>

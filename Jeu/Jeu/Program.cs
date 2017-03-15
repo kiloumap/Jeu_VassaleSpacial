@@ -27,6 +27,7 @@ namespace Jeu
                 BusinessJeu.round(week);
             BusinessStarship starship = new BusinessStarship();
             BusinessCrew crew = new BusinessCrew();
+            BusinessRoom room = new BusinessRoom();
             while (true)
             {
                 ShowMenu();
@@ -37,9 +38,12 @@ namespace Jeu
                         starship.ShowStarShip();
                         break;
                     case "2":
-                        crew.ShowListCrew();
+                        room.showRooms();
                         break;
                     case "3":
+                        crew.ShowListCrew();
+                        break;
+                    case "4":
                         crew.ShowListCrew();
                         Console.WriteLine("Quel personnage voulez vous jouer ? ");
                         string charac = Console.ReadLine();
@@ -48,7 +52,7 @@ namespace Jeu
                         else
                             Console.WriteLine("Veuillez choisir un personage valide");
                         break;
-                    case "4":
+                    case "5":
                         week += 1;
                         BusinessJeu.round(week);
                         break;
@@ -59,6 +63,7 @@ namespace Jeu
                         Console.WriteLine("Veuillez saisir un choix parmis ceux proposés");
                         break;
                 }
+                crew.killCrew();
             }
         }
 
@@ -69,16 +74,18 @@ namespace Jeu
         private static bool ShowMenu()
         {
             string Menu1 = "1 : Voir l'état du vaisseau";
-            string Menu2 = "2 : Voir l'état des membres d'équipages";
-            string Menu3 = "3 : Choisir un membre de l'équipage";
-            string Menu4 = "4 : Tour suivant";
+            string Menu2 = "2 : Voir les salles du vaisseau";
+            string Menu3 = "3 : Voir l'état des membres d'équipages";
+            string Menu4 = "4 : Choisir un membre de l'équipage";
+            string Menu5 = "5 : Tour suivant";
             string Menu9 = "9 : Abandonner la partie";
             Console.WriteLine(string.Format(Environment.NewLine + "Quelle opération desirez vous faire ? " + 
                                             Environment.NewLine + "{0}" + 
                                             Environment.NewLine + "{1}" + 
                                             Environment.NewLine + "{2}" + 
-                                            Environment.NewLine + "{3}" + 
-                                            Environment.NewLine + "{4}", Menu1, Menu2, Menu3, Menu4, Menu9));
+                                            Environment.NewLine + "{3}" +
+                                            Environment.NewLine + "{4}" +
+                                            Environment.NewLine + "{5}", Menu1, Menu2, Menu3, Menu4, Menu5, Menu9));
             return true;
         }
 
@@ -117,30 +124,39 @@ namespace Jeu
             int idCrew = int.Parse(charac);
             BusinessCrew crew = new BusinessCrew();
             BusinessRoll roll = new BusinessRoll();
-            switch (choice)
+            bool boolCharac = true;
+            while (boolCharac == true)
             {
-                case "0":
-                    break;
-                case "1":
-                    crew.mooveCharac(idCrew);
-                    CharacAction(charac);
-                    break;
-                case "2":
-                    roll.showRolls(idCrew);
-                    CharacAction(charac);
-                    break;
-                case "3":
-                    roll.drawRoll(idCrew);
-                    CharacAction(charac);
-                    break;
-                case "4":
-                    crew.repair(idCrew);
-                    CharacAction(charac);
-                    break;
-                case "5":
-                    crew.specialSkill(idCrew);
-                    CharacAction(charac);
-                    break;
+                switch (choice)
+                {
+                    case "0":
+                        break;
+                    case "1":
+                        crew.mooveCharac(idCrew);
+                        crew.killCrew();
+                        CharacAction(charac);
+                        break;
+                    case "2":
+                        roll.showRolls(idCrew);
+                        crew.killCrew();
+                        CharacAction(charac);
+                        break;
+                    case "3":
+                        roll.drawRoll(idCrew);
+                        crew.killCrew();
+                        CharacAction(charac);
+                        break;
+                    case "4":
+                        crew.repair(idCrew);
+                        crew.killCrew();
+                        CharacAction(charac);
+                        break;
+                    case "5":
+                        crew.specialSkill(idCrew);
+                        crew.killCrew();
+                        CharacAction(charac);
+                        break;
+                }
             }
         }
 

@@ -23,9 +23,8 @@ namespace Business
             foreach (Room room in CrudRoom.getAll())
             {
                 i++;
-                Console.WriteLine(string.Format(i + " : Salle " + room.name));
+                Console.WriteLine(string.Format(" " + i + " : Salle " + room.name));
             }
-            Console.WriteLine(Environment.NewLine);
         }
 
         /// <summary>

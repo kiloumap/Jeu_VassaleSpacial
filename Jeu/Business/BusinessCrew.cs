@@ -21,17 +21,14 @@ namespace Business
         /// Function pour verifier que l'équipage soit en vie
         /// </summary>
         /// <returns>true : gameover, false : on continue la partie</returns>
-        public bool checkCrew()
+        public bool checkCrewLife()
         {
-            List<Crew> crew = CrudCrew.getAll();
             int deadMate = 0;
             int numberOfMate = 0;
-            foreach (Crew mate in crew)
+            foreach (Crew mate in CrudCrew.getAll())
             {
                 if (mate.life <= 0)
-                {
                     deadMate += 1;
-                }
                 numberOfMate += 1;
             }
             
@@ -39,6 +36,32 @@ namespace Business
                 return true;
             else
                 return false;
+        }
+
+        /// <summary>
+        /// Fonction pour tuer les équipiers
+        /// </summary>
+        public void killCrew()
+        {
+            foreach(Crew mate in CrudCrew.getAll())
+            {
+                if(mate.life <= 0)
+                {
+                    mate.alive = false;
+                    Console.WriteLine(" Le {0} vient est mort",mate.name);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Fonction qui affiche un message si on joue un équipier mort
+        /// </summary>
+        /// <param name="id"></param>
+        public void showDeathMate(int id)
+        {
+            Crew mate = CrudCrew.getOne(id);
+            if (mate.alive == false)
+                Console.WriteLine(" Ce personnage est mort");
         }
 
         /// <summary>
@@ -60,15 +83,15 @@ namespace Business
                 currentRoom = 4;
             if (mate.room == 4.5)
                 currentRoom = 6;
-            Console.WriteLine("Votre personnage est dans la salle "+ currentRoom);
-            // On lance la methode pour choisir la salle de destination
+            Console.WriteLine(" Votre personnage est dans la salle "+ currentRoom);
+            // On lance la fonction pour choisir la salle de destination
             double finalRoom = chooseRoom();
             double lastRoom = mate.room;
             // On deplace le personnage
-            if (finalRoom >= 1 && finalRoom <= 7)
+            if (mate.alive == true)
             {
                 // tant que le personnage n'arrive pas à destination, il continue (sauf si il meurt :O)
-                while (finalRoom != mate.room)
+                while (finalRoom != mate.room || mate.alive == false)
                 {
                     foreach(Failure failures in businessFailure.getFailureHere(mate.room))
                         businessFailure.setDamage(mate.id, mate.room);
@@ -103,7 +126,9 @@ namespace Business
                     }
                 }
             }
+            showDeathMate(id);
         }
+
 
         /// <summary>
         /// Fonction privée pour connaître la destination de l'équipier
@@ -112,14 +137,18 @@ namespace Business
         /// <returns>le bon format de salle</returns>
         private double chooseRoom()
         {
-            Console.WriteLine("Où voulez vous deplacer votre personnage ? ");
+            Console.WriteLine(" Où voulez vous deplacer votre personnage ? ");
             double result = Convert.ToDouble(Console.ReadLine());
-            if (result == 4)
-                result = 3.5;
-            else if (result == 6)
-                result = 4.5;
-            else
+            if (result >= 1 && result <= 7)
+            {
+                if (result == 4)
+                    result = 3.5;
+                else if (result == 6)
+                    result = 4.5;
                 return result;
+            }
+            else
+                Console.WriteLine(" Ce n'est pas une salle valide, veuillez saisir parmis les choix proposés");
             return result;
         }
 
@@ -132,12 +161,36 @@ namespace Business
             int i = 0;
             foreach (Crew mate in list)
             {
-                Room room = CrudRoom.getOne(mate.room);
-                BusinessRoll businessRoll = new BusinessRoll();
-                i++;
-                Console.WriteLine(string.Format(i + " Le {0} a {1} pdv restant, il à {2} dés restant, il est dans la salle de {3}", 
-                    mate.name, mate.life, businessRoll.showNbRollSpecificCharac(mate.id), room.name));
+                if(mate.alive == true)
+                {
+                    Room room = CrudRoom.getOne(mate.room);
+                    BusinessRoll businessRoll = new BusinessRoll();
+                    i++;
+                    Console.WriteLine(string.Format(" " + i + " Le {0} a {1} pdv restant, il à {2} dés restant, il est dans la salle de {3}", 
+                        mate.name, mate.life, businessRoll.showNbRollSpecificCharac(mate.id), room.name));
+                }
             }
+        }
+
+        /// <summary>
+        /// Fonction qui incrémente la propriété skillUsed
+        /// </summary>
+        /// <param name="id">id équipier</param>
+        public void useSkill(int id)
+        {
+            Crew mate = CrudCrew.getOne(id);
+            CrudCrew.modify(mate.id, mate.name, mate.life, mate.room, mate.alive, mate.skillUsed + 1);
+        }
+
+        /// <summary>
+        /// Fonction qui retourne le nombre de fois où le skill à été utilisé
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public int showSkill(int id)
+        {
+            Crew mate = CrudCrew.getOne(id);
+            return mate.skillUsed;
         }
 
         /// <summary>
@@ -150,35 +203,40 @@ namespace Business
             BusinessFailure businessFailure = new BusinessFailure();
             BusinessRoll roll = new BusinessRoll();
             businessFailure.displayFailureHere(mate.room);
-            if (businessFailure.getFailureHere(mate.room).Count() > 0)
+            if (mate.alive == true)
             {
-                if (roll.getRollsDrawedSpecificCharac(charac).Count() > 0)
+                if (businessFailure.getFailureHere(mate.room).Count() > 0)
                 {
-                    Console.WriteLine("Quelle panne voulez vous réparer ?");
-                    int choice = int.Parse(Console.ReadLine());
-                    roll.showRollsdrawed(charac);
-                    Console.WriteLine("Quelle dés voulez vous utiliser ?");
-                    char[] array = Console.ReadLine().ToCharArray();
-                    for (int index = 0; index < array.Length; index++)
+                    if (roll.getRollsDrawedSpecificCharac(charac).Count() > 0)
                     {
-                        int idRoll = (int)Char.GetNumericValue(array[index]);
-                        Roll rollToSpend = CrudRollDrawed.getOne(idRoll);
-                        Failure failure = CrudFailure.getOne(choice);
-                        CrudFailure.Update(failure.id, failure.life - rollToSpend.value);
+                        Console.WriteLine(" Quelle panne voulez vous réparer ?");
+                        int choice = int.Parse(Console.ReadLine());
+                        roll.showRollsdrawed(charac);
+                        Console.WriteLine(" Quelle dés voulez vous utiliser ?");
+                        char[] array = Console.ReadLine().ToCharArray();
+                        for (int index = 0; index < array.Length; index++)
+                        {
+                            int idRoll = (int)Char.GetNumericValue(array[index]);
+                            Roll rollToSpend = CrudRollDrawed.getOne(idRoll);
+                            Failure failure = CrudFailure.getOne(choice);
+                            CrudFailure.Update(failure.id, failure.life - rollToSpend.value);
+                        }
+                    }
+                    else if (roll.getRollsToDrawSpecificCharac(charac).Count() > 0)
+                    {
+                        roll.showRollstoDraw(charac);
+                        Console.WriteLine(" Vous n'avez plus de dés stocké, il faut en relancer.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(" Vous n'avez plus de dés à utiliser avec ce personnage");
                     }
                 }
-                else if (roll.getRollsToDrawSpecificCharac(charac).Count() > 0)
-                {
-                    roll.showRollstoDraw(charac);
-                    Console.WriteLine("Vous n'avez plus de dés stocké, il faut en relancer.");
-                }
                 else
-                {
-                    Console.WriteLine("Vous n'avez plus de dés à utiliser avec ce personnage");
-                }
+                    Console.WriteLine(" Il n'y a pas de panne à reparer ici");
             }
             else
-                Console.WriteLine("Il n'y a pas de panne à reparer ici");
+                showDeathMate(charac);
         }
        
         /// <summary>
@@ -187,63 +245,84 @@ namespace Business
         /// <param name="charac">id de l'équipier</param>
         public void specialSkill(int charac)
         {
-            Crew character = CrudCrew.getOne(charac);
-            string typeCharac = character.GetType().ToString();
-            switch (typeCharac)
+            Crew mate = CrudCrew.getOne(charac);
+            string typeCharac = mate.GetType().ToString();
+            if (mate.alive == true)
             {
-                case "Classes.Crew.Captain":
-                    captainSkill();
-                    break;
-                case "Classes.Crew.Commandant":
-                    commandantSkill(charac);
-                    break;
-                case "Classes.Crew.Doctor":
-                    healPlease();
-                    break;
-                case "Classes.Crew.Mechanic":
-                    repairThis();
-                    break;
+                switch (typeCharac)
+                {
+                    case "Classes.Crew.Captain":
+                        captainSkill(charac);
+                        break;
+                    case "Classes.Crew.Commandant":
+                        commandantSkill(charac);
+                        break;
+                    case "Classes.Crew.Doctor":
+                        healPlease(charac);
+                        break;
+                    case "Classes.Crew.Mechanic":
+                        repairThis(charac);
+                        break;
+                }
             }
+            else
+                showDeathMate(charac);
         }
 
         /// <summary>
         /// Pouvoir spécial du Mécanicien
         /// Fonction qui répare le vaisseau
         /// </summary>
-        private void repairThis()
+        private void repairThis(int id)
         {
-            Starship starship = CrudStarship.getOne();
-            CrudStarship.modify(starship.life + 1);
-            Console.WriteLine("Féliciation, votre vaisseau a gagné un point de vie, il a maitenant {0}", starship.life);
+            Crew mate = CrudCrew.getOne(3);
+            if (showSkill(id) >= 2)
+                Console.WriteLine(" Ce personnage à déjà lancé sa capacité spécial 3 fois durant ce tour");
+            else
+            {
+                Starship starship = CrudStarship.getOne();
+                CrudStarship.modify(starship.life + 1);
+                Console.WriteLine(" Féliciation, votre vaisseau a gagné un point de vie, il a maitenant {0}", starship.life);
+            }
         }
 
         /// <summary>
         /// Pouvoir spécial du Docteur
         /// Fonction qui soigne l'équipe
         /// </summary>
-        private void healPlease()
+        private void healPlease(int id)
         {
-            foreach(Crew crew in CrudCrew.getAll())
+            if (showSkill(id) >= 2)
+                Console.WriteLine(" Ce personnage à déjà lancé sa capacité spécial 3 fois durant ce tour");
+            else
             {
-                if(crew.alive == true)
-                    CrudCrew.modify(crew.id, crew.name, crew.life + 1, crew.room);
+                foreach (Crew mate in CrudCrew.getAll())
+                {
+                    if(mate.alive == true)
+                        CrudCrew.modify(mate.id, mate.name, mate.life + 1, mate.room, mate.alive, mate.skillUsed);
+                }
+                Console.WriteLine(" Féliciation, chaque équipier à gagner 1 point de vie :");
+                ShowListCrew();
             }
-            Console.WriteLine("Féliciation, chaque équipier à gagner 1 point de vie :");
-            ShowListCrew();
         }
 
         /// <summary>
         /// Pouvoir spécial du Capitaine
         /// Fonction qui rends 1 dés vierge à l'équipage
         /// </summary>
-        private void captainSkill()
+        private void captainSkill(int id)
         {
-            foreach(Crew crew in CrudCrew.getAll())
+            if (showSkill(id) >= 2)
+                Console.WriteLine(" Ce personnage à déjà lancé sa capacité spécial 3 fois durant ce tour");
+            else
             {
-                CrudRollToDraw.addOne(crew.id);
+                foreach (Crew crew in CrudCrew.getAll())
+                {
+                    CrudRollToDraw.addOne(crew.id);
+                }
+                Console.WriteLine(" Féliciation, chaque équipier à gagner un dés :");
+                ShowListCrew();
             }
-            Console.WriteLine("Féliciation, chaque équipier à gagner un dés :");
-            ShowListCrew();
         }
 
         /// <summary>
@@ -253,27 +332,32 @@ namespace Business
         /// <param name="id">id du commandant pour retrouver les pannes atteignables</param>
         private void commandantSkill(int id)
         {
-            Crew mate = CrudCrew.getOne(id);
-            double position = mate.room;
-            List<Failure> reachableFailure = new List<Failure>();
-            foreach(Failure failure in CrudFailure.getAll())
-            {
-                if(failure.room == position)
-                    reachableFailure.Add(failure);
-            }
-            foreach(Failure failure in reachableFailure)
-            {
-                Room room = CrudRoom.getOne(failure.room);
-                Console.WriteLine("Il y a la panne n° {0} de type : {1} panne dans la salle {2}",failure.id, failure.name, room.name);
-            }
-            Console.WriteLine("Quelle panne voulez vous réparer ?");
-            int idFailure = int.Parse(Console.ReadLine());
-            Failure toRepair = CrudFailure.getOne(idFailure);
-            CrudFailure.Update(idFailure, toRepair.life - 10);
-            if (toRepair.life <= 0)
-                Console.WriteLine("Félicitation, vous avez complétement réparer la panne");
+            if (showSkill(id) >= 2)
+                Console.WriteLine(" Ce personnage à déjà lancé sa capacité spécial 3 fois durant ce tour");
             else
-                Console.WriteLine("Bon boulot, il reste {0} réparation à faire sur cette panne", toRepair.life);
+            {
+                Crew mate = CrudCrew.getOne(id);
+                double position = mate.room;
+                List<Failure> reachableFailure = new List<Failure>();
+                foreach (Failure failure in CrudFailure.getAll())
+                {
+                    if (failure.room == position)
+                        reachableFailure.Add(failure);
+                }
+                foreach (Failure failure in reachableFailure)
+                {
+                    Room room = CrudRoom.getOne(failure.room);
+                    Console.WriteLine(" Il y a la panne n° {0} de type : {1} panne dans la salle {2}", failure.id, failure.name, room.name);
+                }
+                Console.WriteLine(" Quelle panne voulez vous réparer ?");
+                int idFailure = int.Parse(Console.ReadLine());
+                Failure toRepair = CrudFailure.getOne(idFailure);
+                CrudFailure.Update(idFailure, toRepair.life - 10);
+                if (toRepair.life <= 0)
+                    Console.WriteLine(" Félicitation, vous avez complétement réparer la panne");
+                else
+                    Console.WriteLine(" Bon boulot, il reste {0} réparation à faire sur cette panne", toRepair.life);
+        }
         }
     }
 }
