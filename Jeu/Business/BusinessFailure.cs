@@ -203,6 +203,12 @@ namespace Business
                 case 10:
                     CrudFailure.create("medium", 22, 10);
                     break;
+                default:
+                    if(CrudFailure.getAll() == null)
+                    {
+                        BusinessJeu.victory();
+                    }
+                    break;
             }
 
         }

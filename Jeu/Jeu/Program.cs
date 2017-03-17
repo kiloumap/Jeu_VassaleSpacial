@@ -78,6 +78,7 @@ namespace Jeu
             string Menu3 = "3 : Voir l'état des membres d'équipages";
             string Menu4 = "4 : Choisir un membre de l'équipage";
             string Menu5 = "5 : Tour suivant";
+            string Menu6 = "6 : Consulter les règles du jeu";
             string Menu9 = "9 : Abandonner la partie";
             Console.WriteLine(string.Format(Environment.NewLine + "Quelle opération desirez vous faire ? " + 
                                             Environment.NewLine + "{0}" + 
@@ -85,7 +86,8 @@ namespace Jeu
                                             Environment.NewLine + "{2}" + 
                                             Environment.NewLine + "{3}" +
                                             Environment.NewLine + "{4}" +
-                                            Environment.NewLine + "{5}", Menu1, Menu2, Menu3, Menu4, Menu5, Menu9));
+                                            Environment.NewLine + "{5}" +
+                                            Environment.NewLine + "{6}", Menu1, Menu2, Menu3, Menu4, Menu5, Menu6, Menu9));
             return true;
         }
 
